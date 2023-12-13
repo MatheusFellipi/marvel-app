@@ -3,16 +3,19 @@ import CryptoJS from "crypto-js";
 import { Alert } from "react-native";
 export type ResponseType<T> = Promise<AxiosResponse<T>>;
 
+const timestamp = new Date().getTime();
+
 const BASE_URL = process.env.EXPO_PUBLIC_API;
 
-const publicKey = process.env.EXPO_PUBLIC_API_KEY;
-const privateKey = process.env.EXPO_PRIVATE_API_KEY;
+const publicKey = process.env.EXPO_PUBLIC_API_KEY ?? "";
+const privateKey = process.env.EXPO_PUBLIC_PRIVATE_API_KEY ?? "";
 
 function generateMarvelHash() {
-  const timestamp = new Date().getTime();
   const dataToHash = timestamp + privateKey + publicKey;
   return CryptoJS.MD5(dataToHash).toString();
 }
+
+const url = `?ts=${timestamp}&apikey=${publicKey}&hash=${generateMarvelHash()}`;
 
 const Api = () => {
   const instance = axios.create({
@@ -26,9 +29,7 @@ const Api = () => {
   });
 
   instance.interceptors.request.use(async function (config) {
-    config.url += generateMarvelHash();
-    console.log(config.url);
-    
+    config.url += url;
     return config;
   });
 
