@@ -2002,6 +2002,11 @@
   dependencies:
     "@sinonjs/commons" "^3.0.0"
 
+"@types/crypto-js@^4.2.1":
+  "integrity" "sha512-FSPGd9+OcSok3RsM0UZ/9fcvMOXJ1ENE/ZbLfOPlBWj7BgXtEAM8VYfTtT760GiLbQIMoVozwVuisjvsVwqYWw=="
+  "resolved" "https://registry.npmjs.org/@types/crypto-js/-/crypto-js-4.2.1.tgz"
+  "version" "4.2.1"
+
 "@types/hammerjs@^2.0.36":
   "integrity" "sha512-qkcUlZmX6c4J8q45taBKTL3p+LbITgyx7qhlPYOdOHZB7B31K0mXbP5YA7i7SgDeEGuI9MnumiKPEMrxg8j3KQ=="
   "resolved" "https://registry.npmjs.org/@types/hammerjs/-/hammerjs-2.0.45.tgz"
@@ -2958,6 +2963,11 @@
   "integrity" "sha512-mCxBlsHFYh9C+HVpiEacem8FEBnMXgU9gy4zmNC+SXAZNB/1idgp/aulFJ4FgCi7GPEVbfyng092GqL2k2rmow=="
   "resolved" "https://registry.npmjs.org/crypt/-/crypt-0.0.2.tgz"
   "version" "0.0.2"
+
+"crypto-js@^4.2.0":
+  "integrity" "sha512-KALDyEYgpY+Rlob/iriUtjV6d5Eq+Y191A5g4UqLAi8CyGP9N1+FdVbkc1SxKc2r4YAYqG8JzO2KGL+AizD70Q=="
+  "resolved" "https://registry.npmjs.org/crypto-js/-/crypto-js-4.2.0.tgz"
+  "version" "4.2.0"
 
 "crypto-random-string@^1.0.0":
   "integrity" "sha512-GsVpkFPlycH7/fRR7Dhcmnoii54gV1nz7y4CWyeFS14N+JVBBhY+r8amRHE4BwSYal7BPTDp8isvAlCxyFt3Hg=="
