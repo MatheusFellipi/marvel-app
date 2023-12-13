@@ -1,5 +1,4 @@
 import {
-  useFonts,
   Poppins_100Thin,
   Poppins_100Thin_Italic,
   Poppins_200ExtraLight,
@@ -39,9 +38,4 @@ export const fonts = {
   Poppins_800ExtraBold_Italic,
   Poppins_900Black,
   Poppins_900Black_Italic,
-};
-
-export const Fonts = () => {
-  let [fontsLoaded] = useFonts(fonts);
-  return { fontsLoaded };
 };
