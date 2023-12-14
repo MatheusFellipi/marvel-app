@@ -14,7 +14,7 @@ function generateMarvelHash() {
   return CryptoJS.MD5(dataToHash).toString();
 }
 
-const url = `?ts=${timestamp}&apikey=${publicKey}&hash=${generateMarvelHash()}`;
+const url = `ts=${timestamp}&apikey=${publicKey}&hash=${generateMarvelHash()}`;
 
 const Api = () => {
   const instance = axios.create({

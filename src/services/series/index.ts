@@ -1,6 +1,6 @@
 import { connection } from "../connections";
 
-const base = "series";
+const base = "series?";
 
 export const controllerSeries = {
   Get: async () => {

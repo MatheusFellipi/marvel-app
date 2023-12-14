@@ -1,6 +1,6 @@
 import { connection } from "../connections";
 
-const base = "events";
+const base = "events?";
 
 export const controllerEvents = {
   Get: async () => {

@@ -1,7 +1,7 @@
 import { TypeCharacters } from "@/types/components/heros";
 import { connection } from "../connections";
 
-const base = "characters";
+const base = "characters?";
 
 export const controllerCharacters = {
   Get: async () => {
@@ -9,7 +9,7 @@ export const controllerCharacters = {
     return data.data.results;
   },
   ById: async (id:number) => {
-    const { data } = await connection.GetData<TypeCharacters>(`${base}/${id}`);
+    const { data } = await connection.GetData<any>(`${base}/${id}`);
     return data.data.results;
   },
 };

@@ -4,16 +4,19 @@ import { SkeletonCarrosselComponent } from "@/shared/components/cardCarrossel/sk
 import { SubtitleText } from "../styles";
 import { TypeCharacters } from "@/types/components/heros";
 import { useEffect, useState } from "react";
-import { useNavigation } from "expo-router";
+import { useRouter } from "expo-router";
 import { View } from "react-native";
 
 export const ComicComponent = () => {
-  const { navigate } = useNavigation();
+  const router = useRouter();
   const [data, setData] = useState<TypeCharacters[]>([]);
   const [loader, setLoader] = useState(true);
 
-  const handleRoute = (id: number) => {
-    navigate(`hero/${id}` as never);
+  const handleRoute = (heroId: number) => {
+    router.push({
+      pathname: "hero",
+      params: { heroId: heroId },
+    } as never);
   };
 
   const getComics = () => {
