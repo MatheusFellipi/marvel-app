@@ -7,11 +7,12 @@ export type TypeCharacters = {
   };
 };
 
-
 export type CardsComponentsProps = {
   data: TypeCharacters;
+  handleRoute: (id: number) => void;
 };
 
 export type CardsCarrosselComponentsProps = {
   data: TypeCharacters[];
+  handleRoute: (id: number) => void;
 };
