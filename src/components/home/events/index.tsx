@@ -2,8 +2,10 @@ import { controllerCharacters } from "@/services/characters";
 import { CardCarrosselComponent } from "@/shared/components/cardCarrossel";
 import { TypeCharacters } from "@/types/components/heros";
 import { useEffect, useState } from "react";
+import { View } from "react-native";
+import { SubtitleText } from "../styles";
 
-export default function HeroComponent() {
+export default function EventsComponent() {
   const [data, setData] = useState<TypeCharacters[]>([]);
 
   useEffect(() => {
@@ -16,5 +18,10 @@ export default function HeroComponent() {
     });
   };
 
-  return <CardCarrosselComponent data={data} />;
+  return (
+    <View>
+      <SubtitleText>Eventos</SubtitleText>
+      <CardCarrosselComponent data={data} />
+    </View>
+  );
 }
