@@ -1,5 +1,5 @@
 import styled from "styled-components/native";
-import { StyleSheet } from 'react-native';
+import { StyleSheet } from "react-native";
 
 export const CardsCarrossel = styled.TouchableOpacity`
   position: relative;
@@ -21,7 +21,14 @@ export const TextTitleCard = styled.Text`
 export const styles = StyleSheet.create({
   image: {
     flex: 1,
-    width: '100%',
+    width: "100%",
     borderRadius: 16,
   },
 });
+
+export const SkeletonCarrossel = styled.View`
+  flex-direction: row;
+  padding-left: 24px;
+  margin-top: 16px;
+  gap: 16px;
+`;

@@ -1,6 +1,6 @@
 import { CardsCarrosselComponentsProps } from "@/types/components/heros";
 import { FlatList } from "react-native";
-import CardsComponent from "./Cards";
+import { CardsComponent } from "./cards";
 
 export const CardCarrosselComponent = ({
   data,

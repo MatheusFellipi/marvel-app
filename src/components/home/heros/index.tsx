@@ -1,27 +1,35 @@
-import { controllerCharacters } from "@/services/characters";
-import { CardCarrosselComponent } from "@/shared/components/cardCarrossel";
-import { TypeCharacters } from "@/types/components/heros";
-import { useEffect, useState } from "react";
-import { View } from "react-native";
-import { SubtitleText } from "../styles";
+import { CardCarrosselComponent } from '@/shared/components/cardCarrossel';
+import { controllerCharacters } from '@/services/characters';
+import { SkeletonCarrosselComponent } from '@/shared/components/cardCarrossel/skeleton';
+import { SubtitleText } from '../styles';
+import { TypeCharacters } from '@/types/components/heros';
+import { useEffect, useState } from 'react';
+import { View } from 'react-native';
 
-export const HeroComponent=() =>{
+export const HeroComponent = () => {
   const [data, setData] = useState<TypeCharacters[]>([]);
+  const [loader, setLoader] = useState(true);
 
   useEffect(() => {
-    getCharacters();
+    // getCharacters();
   }, []);
 
   const getCharacters = () => {
-    controllerCharacters.Get().then((data) => {
-      setData(data);
-    });
+    controllerCharacters
+      .Get()
+      .then((data) => {
+        setData(data);
+      })
+      .finally(() => {
+        setLoader(true);
+      });
   };
 
   return (
     <View>
       <SubtitleText>Heróis</SubtitleText>
-      <CardCarrosselComponent data={data} />
+      {loader && <SkeletonCarrosselComponent />}
+      {!loader && <CardCarrosselComponent data={data} />}
     </View>
   );
-}
+};

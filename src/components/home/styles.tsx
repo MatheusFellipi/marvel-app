@@ -5,4 +5,6 @@ export const SubtitleText = styled.Text`
   font-family: "Poppins_700Bold";
   font-size: 18px;
   font-style: normal;
+  margin-top: 28px;
+  margin-left: 24px;
 `;
