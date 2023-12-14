@@ -1,8 +1,11 @@
-import { SplashScreen, Stack } from 'expo-router';
-import { theme } from '@/shared/theme';
-import { ThemeProvider } from 'styled-components/native';
-import { useEffect } from 'react';
-import { useFonts } from '@/shared/hooks/fonts';
+import "react-native-reanimated";
+import "react-native-gesture-handler";
+import { SplashScreen } from "expo-router";
+import { theme } from "@/shared/theme";
+import { ThemeProvider } from "styled-components/native";
+import { useEffect } from "react";
+import { useFonts } from "@/shared/hooks/fonts";
+import { Navigation } from "@/navigation";
 export { ErrorBoundary } from "expo-router";
 
 export const unstable_settings = {
@@ -30,9 +33,7 @@ export default function RootLayout() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Stack>
-        <Stack.Screen name="index" options={{ headerShown: false }} />
-      </Stack>
+      <Navigation />
     </ThemeProvider>
   );
 }
