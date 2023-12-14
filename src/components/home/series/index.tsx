@@ -1,19 +1,19 @@
-import { controllerCharacters } from "@/services/characters";
 import { CardCarrosselComponent } from "@/shared/components/cardCarrossel";
 import { TypeCharacters } from "@/types/components/heros";
 import { useEffect, useState } from "react";
 import { View } from "react-native";
 import { SubtitleText } from "../styles";
+import { controllerSeries } from "@/services/series";
 
 export default function SerieComponent() {
   const [data, setData] = useState<TypeCharacters[]>([]);
 
   useEffect(() => {
-    getCharacters();
+    getSeries();
   }, []);
 
-  const getCharacters = () => {
-    controllerCharacters.Get().then((data) => {
+  const getSeries = () => {
+    controllerSeries.Get().then((data) => {
       setData(data);
     });
   };

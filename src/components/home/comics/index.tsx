@@ -1,19 +1,19 @@
-import { controllerCharacters } from "@/services/characters";
-import { CardCarrosselComponent } from "@/shared/components/cardCarrossel";
-import { TypeCharacters } from "@/types/components/heros";
-import { useEffect, useState } from "react";
-import { View } from "react-native";
-import { SubtitleText } from "../styles";
+import { CardCarrosselComponent } from '@/shared/components/cardCarrossel';
+import { controllerComics } from '@/services/comics';
+import { SubtitleText } from '../styles';
+import { TypeCharacters } from '@/types/components/heros';
+import { useEffect, useState } from 'react';
+import { View } from 'react-native';
 
 export default function ComicComponent() {
   const [data, setData] = useState<TypeCharacters[]>([]);
 
   useEffect(() => {
-    getCharacters();
+    getComics();
   }, []);
 
-  const getCharacters = () => {
-    controllerCharacters.Get().then((data) => {
+  const getComics = () => {
+    controllerComics.Get().then((data) => {
       setData(data);
     });
   };
