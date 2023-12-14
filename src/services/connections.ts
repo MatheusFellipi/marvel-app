@@ -1,4 +1,5 @@
-import api, { ResponseType } from "./api";
+import { ResponseType } from "@/types/api";
+import api from "./api";
 
 type ReturnType<T> = ResponseType<T>;
 
