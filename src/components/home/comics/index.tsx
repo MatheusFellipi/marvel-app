@@ -1,11 +1,11 @@
-import { CardCarrosselComponent } from '@/shared/components/cardCarrossel';
-import { controllerComics } from '@/services/comics';
-import { SubtitleText } from '../styles';
-import { TypeCharacters } from '@/types/components/heros';
-import { useEffect, useState } from 'react';
-import { View } from 'react-native';
+import { CardCarrosselComponent } from "@/shared/components/cardCarrossel";
+import { controllerComics } from "@/services/comics";
+import { SubtitleText } from "../styles";
+import { TypeCharacters } from "@/types/components/heros";
+import { useEffect, useState } from "react";
+import { View } from "react-native";
 
-export default function ComicComponent() {
+export const ComicComponent = () => {
   const [data, setData] = useState<TypeCharacters[]>([]);
 
   useEffect(() => {
@@ -24,4 +24,4 @@ export default function ComicComponent() {
       <CardCarrosselComponent data={data} />
     </View>
   );
-}
+};

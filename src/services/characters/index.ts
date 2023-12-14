@@ -8,4 +8,8 @@ export const controllerCharacters = {
     const { data } = await connection.GetData<TypeCharacters>(base);
     return data.data.results;
   },
+  ById: async (id:number) => {
+    const { data } = await connection.GetData<TypeCharacters>(`${base}/${id}`);
+    return data.data.results;
+  },
 };

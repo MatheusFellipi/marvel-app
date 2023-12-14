@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { View } from "react-native";
 import { SubtitleText } from "../styles";
 
-export default function HeroComponent() {
+export const HeroComponent=() =>{
   const [data, setData] = useState<TypeCharacters[]>([]);
 
   useEffect(() => {

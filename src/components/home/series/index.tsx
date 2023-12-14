@@ -5,7 +5,7 @@ import { View } from "react-native";
 import { SubtitleText } from "../styles";
 import { controllerSeries } from "@/services/series";
 
-export default function SerieComponent() {
+export const SerieComponent = () => {
   const [data, setData] = useState<TypeCharacters[]>([]);
 
   useEffect(() => {
@@ -24,4 +24,4 @@ export default function SerieComponent() {
       <CardCarrosselComponent data={data} />
     </View>
   );
-}
+};

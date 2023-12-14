@@ -5,7 +5,7 @@ import { View } from "react-native";
 import { SubtitleText } from "../styles";
 import { controllerEvents } from "@/services/events";
 
-export default function EventsComponent() {
+export const EventsComponent = ()=> {
   const [data, setData] = useState<TypeCharacters[]>([]);
 
   useEffect(() => {
