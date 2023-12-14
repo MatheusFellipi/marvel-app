@@ -5,4 +5,7 @@ export const appStackRoutes = [
   {
     name: "home/index",
   },
+  {
+    name: "hero/[id]",
+  },
 ];

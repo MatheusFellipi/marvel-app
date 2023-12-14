@@ -4,29 +4,38 @@ import { SkeletonCarrosselComponent } from '@/shared/components/cardCarrossel/sk
 import { SubtitleText } from '../styles';
 import { TypeCharacters } from '@/types/components/heros';
 import { useEffect, useState } from 'react';
+import { useNavigation } from 'expo-router';
 import { View } from 'react-native';
 
 export const SerieComponent = () => {
+  const { navigate } = useNavigation();
   const [data, setData] = useState<TypeCharacters[]>([]);
   const [loader, setLoader] = useState(true);
 
+  const handleRoute = (id: number) => {
+    navigate(`hero/${id}` as never);
+  };
+
+  const getSeries = () => {
+    controllerSeries
+      .Get()
+      .then((data) => {
+        setData(data);
+      })
+      .finally(() => {
+        setLoader(false);
+      });
+  };
   useEffect(() => {
     getSeries();
   }, []);
-
-  const getSeries = () => {
-    controllerSeries.Get().then((data) => {
-      setData(data);
-    }).finally(()=>{
-      setLoader(false)
-    });
-  };
-
   return (
     <View>
       <SubtitleText>Séries</SubtitleText>
       {loader && <SkeletonCarrosselComponent />}
-      {!loader && <CardCarrosselComponent data={data} />}
+      {!loader && (
+        <CardCarrosselComponent handleRoute={handleRoute} data={data} />
+      )}
     </View>
   );
 };
