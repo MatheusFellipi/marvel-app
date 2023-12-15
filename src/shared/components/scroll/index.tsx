@@ -11,12 +11,19 @@ type Props = {
 export function Scroll({ children, bgColor }: Props) {
   const theme = useTheme();
   return (
-    <SafeAreaView testID="layout" edges={["left", "right"]}>
+    <SafeAreaView
+      style={{
+        flex: 1,
+      }}
+      testID="layout"
+      edges={["left", "right"]}
+    >
       <ScrollView showsVerticalScrollIndicator={false}>
         <View
           style={{
             backgroundColor: bgColor ?? theme.colors.white,
             flex: 1,
+            paddingBottom: 14
           }}
         >
           <View
