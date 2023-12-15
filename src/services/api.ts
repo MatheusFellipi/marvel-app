@@ -14,7 +14,7 @@ function generateMarvelHash() {
   return CryptoJS.MD5(dataToHash).toString();
 }
 
-const url = `ts=${timestamp}&apikey=${publicKey}&hash=${generateMarvelHash()}`;
+const url = `&ts=${timestamp}&apikey=${publicKey}&hash=${generateMarvelHash()}`;
 
 const Api = () => {
   const instance = axios.create({
@@ -35,7 +35,7 @@ const Api = () => {
   instance.interceptors.response.use(
     (config) => config,
     (error) => {
-      const message = error?.response?.data?.response;
+      const message = error?.response?.data.message;
       Alert.alert("aviso", message);
       return Promise.reject(error);
     }
