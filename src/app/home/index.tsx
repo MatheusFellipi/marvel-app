@@ -1,19 +1,15 @@
-import { ComicComponent } from "@/components/home/comics";
-import { EventsComponent } from "@/components/home/events";
-import { HeroComponent } from "@/components/home/heros";
-import { SerieComponent } from "@/components/home/series";
 import { Icons } from "@assets/index";
-import { Header, SearchIcon, TextHome, Title } from "./styled";
+import { Header, TextHome, Title } from "./styled";
 import { Scroll } from "@/shared/components/scroll";
+import { HomeComponent } from "@/components/home";
+import { SearchComponent } from "@/components/search";
 
 export default function Home() {
   return (
     <Scroll>
       <Header>
         <Icons.MarvelLogo />
-        <SearchIcon>
-          <Icons.Nav.Search />
-        </SearchIcon>
+        <SearchComponent />
       </Header>
       <TextHome>Bem vindo ao Pontua Marvel</TextHome>
       <Title>Escolha o seu personagem</Title>
@@ -22,10 +18,7 @@ export default function Home() {
         na maioria dos títulos de quadrinhos americanos e outras mídias
         publicadas pela Marvel Entertainment.
       </TextHome>
-      <HeroComponent></HeroComponent>
-      <ComicComponent></ComicComponent>
-      <SerieComponent></SerieComponent>
-      <EventsComponent></EventsComponent>
+      <HomeComponent />
     </Scroll>
   );
 }

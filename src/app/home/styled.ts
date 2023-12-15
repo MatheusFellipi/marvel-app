@@ -19,12 +19,5 @@ export const Header = styled.View`
   align-items: center;
   justify-content: center;
   height: 64px;
-`;
-
-export const SearchIcon = styled.TouchableOpacity`
-  justify-content: center;
-  position: absolute;
-  height: 64px;
-  width: 50px;
-  right: 0;
+  margin-top: 40px;
 `;
