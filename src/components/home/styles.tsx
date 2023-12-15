@@ -8,3 +8,7 @@ export const SubtitleText = styled.Text`
   margin-top: 28px;
   margin-left: 24px;
 `;
+
+export const Container = styled.View`
+  gap: 48px;
+`;
