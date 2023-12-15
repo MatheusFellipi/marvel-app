@@ -31,7 +31,7 @@ export const HeroComponent = () => {
   };
 
   useEffect(() => {
-    // getCharacters();
+    getCharacters();
   }, []);
 
   return (
