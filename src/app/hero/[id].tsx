@@ -1,6 +1,14 @@
+import { CardCarrosselComponent } from "@/shared/components/cardCarrossel";
 import { controllerCharacters } from "@/services/characters";
+import { ImageBackground, View } from "react-native";
 import { Icons } from "@assets/index";
 import { Scroll } from "@/shared/components/scroll";
+import { SkeletonCarrosselComponent } from "@/shared/components/cardCarrossel/skeleton";
+import { TypeCharactersDetails } from "@/types/components/heros";
+import { TypeComicsDetails } from "@/types/components/comics";
+import { useEffect, useState } from "react";
+import { useLocalSearchParams, useRouter } from "expo-router";
+import { useTheme } from "styled-components";
 import {
   Characteristics,
   Gradient,
@@ -11,15 +19,6 @@ import {
   TextSectionTitle,
   TextTitleProfile,
 } from "./styles";
-import { Dimensions, ImageBackground, View } from "react-native";
-import { useLocalSearchParams, useRouter } from "expo-router";
-import { useEffect, useState } from "react";
-import { useTheme } from "styled-components";
-import { CardCarrosselComponent } from "@/shared/components/cardCarrossel";
-import { TypeCharactersDetails } from "@/types/components/heros";
-import { TypeComicsDetails } from "@/types/components/comics";
-
-const { height } = Dimensions.get("screen");
 
 export default function HeroScreen() {
   const theme = useTheme();
@@ -28,17 +27,29 @@ export default function HeroScreen() {
 
   const [data, setData] = useState<TypeCharactersDetails>();
   const [comics, setComics] = useState<TypeComicsDetails[]>([]);
+  const [loaderComics, setLoaderComics] = useState(true);
+  const [loader, setLoader] = useState(true);
 
   const details = (id: number) => {
-    controllerCharacters.ById(id).then((data) => {
-      setData(data[0]);
-    });
+    controllerCharacters
+      .ById(id)
+      .then((data) => {
+        setData(data[0]);
+      })
+      .finally(() => {
+        setLoader(false);
+      });
   };
 
   const comicsById = (id: number) => {
-    controllerCharacters.CharComics(id).then((data) => {
-      setComics(data);
-    });
+    controllerCharacters
+      .CharComics(id)
+      .then((data) => {
+        setComics(data);
+      })
+      .finally(() => {
+        setLoaderComics(false);
+      });
   };
 
   useEffect(() => {
@@ -111,7 +122,10 @@ export default function HeroScreen() {
         </Gradient>
       </ImageBackground>
       <TextSectionTitle>Quadrinhos</TextSectionTitle>
-      <CardCarrosselComponent data={comics} handleRoute={() => {}} />
+      {loaderComics && <SkeletonCarrosselComponent colorMode="dark" />}
+      {!loaderComics && (
+        <CardCarrosselComponent data={comics} handleRoute={() => {}} />
+      )}
     </Scroll>
   );
 }
