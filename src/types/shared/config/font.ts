@@ -1,3 +1,3 @@
 import { fonts } from "@/shared/config/font";
 
-export type FontsType = typeof fonts;
+export type FontsType = keyof typeof fonts;
