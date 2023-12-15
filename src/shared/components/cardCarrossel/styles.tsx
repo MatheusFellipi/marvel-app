@@ -5,7 +5,7 @@ export const CardsCarrossel = styled.TouchableOpacity`
   position: relative;
   width: 140px;
   height: 230px;
-  margin: 16px;
+  margin: 24px 16px 0 16px;
   border-radius: 16px;
 `;
 
