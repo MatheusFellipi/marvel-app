@@ -8,7 +8,7 @@ type Props = {
   bgColor?: string;
 };
 
-export function Scroll({ children, bgColor }: Props) {
+export function Scroll({ children, bgColor }: Readonly<Props>) {
   const theme = useTheme();
   return (
     <SafeAreaView
