@@ -4,10 +4,11 @@ import { HeroComponent } from "@/components/home/heros";
 import { SerieComponent } from "@/components/home/series";
 import { Icons } from "@assets/index";
 import { Header, SearchIcon, TextHome, Title } from "./styled";
+import { Scroll } from "@/shared/components/scroll";
 
 export default function Home() {
   return (
-    <>
+    <Scroll>
       <Header>
         <Icons.MarvelLogo />
         <SearchIcon>
@@ -25,6 +26,6 @@ export default function Home() {
       <ComicComponent></ComicComponent>
       <SerieComponent></SerieComponent>
       <EventsComponent></EventsComponent>
-    </>
+    </Scroll>
   );
 }
