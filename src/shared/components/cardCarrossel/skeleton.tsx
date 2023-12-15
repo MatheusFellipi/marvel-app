@@ -1,15 +1,16 @@
 import { Skeleton } from "moti/skeleton";
 import { SkeletonCarrossel } from "./styles";
-import { Dimensions } from "react-native";
 
-const { width } = Dimensions.get("screen");
-
-export const SkeletonCarrosselComponent = () => {
+export const SkeletonCarrosselComponent = ({
+  colorMode = "light",
+}: {
+  colorMode?: "dark" | "light";
+}) => {
   return (
     <SkeletonCarrossel>
-      <Skeleton colorMode={"light"} width={140} height={230} />
-      <Skeleton colorMode={"light"} width={140} height={230} />
-      <Skeleton colorMode={"light"} width={140} height={230} />
+      <Skeleton colorMode={colorMode} width={140} height={230} />
+      <Skeleton colorMode={colorMode} width={140} height={230} />
+      <Skeleton colorMode={colorMode} width={140} height={230} />
     </SkeletonCarrossel>
   );
 };
