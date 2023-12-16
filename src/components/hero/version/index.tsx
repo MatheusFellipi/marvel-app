@@ -1,7 +1,11 @@
 import { TypeCharactersDetails } from "@/types/components/heros";
 import { CardVersionHeroComponent } from "./cardVersion";
-import { Container } from "../styled";
+import { Container, ListAll } from "../styled";
 import { ResultType } from "@/types/components/search";
+import { Icons } from "@assets/index";
+import { TextComponent } from "@/shared/components/text";
+import { TouchableOpacity } from "react-native";
+import { useRouter } from "expo-router";
 
 type Props = {
   data?: ResultType[];
@@ -9,21 +13,36 @@ type Props = {
 };
 
 export const VersionHeroComponent = ({ data, current }: Props) => {
+  const router = useRouter();
   return (
     <Container>
-      <CardVersionHeroComponent
-        secondary={true}
-        key={current?.id ?? 0}
-        data={current}
-      />
-      {data && data?.length > 0 &&
+      <CardVersionHeroComponent secondary={true} data={current} />
+      {data &&
+        data?.length > 0 &&
         data?.map((item) => (
           <>
             {item.id !== current?.id && (
-              <CardVersionHeroComponent key={item.id} data={item} />
+              <TouchableOpacity
+                onPress={() => {
+                  router.push({
+                    pathname: "hero/[id]",
+                    params: { id: item.id },
+                  });
+                }}
+              >
+                <CardVersionHeroComponent key={item.id} data={item} />
+              </TouchableOpacity>
             )}
           </>
         ))}
+      {data && data?.length > 3 && (
+        <ListAll>
+          <TextComponent TextColor="white" fontSize={12}>
+            Lista completa
+          </TextComponent>
+          <Icons.Nav.Arrow />
+        </ListAll>
+      )}
     </Container>
   );
 };

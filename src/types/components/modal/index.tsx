@@ -6,8 +6,8 @@ export type ModalHeaderComponentsProps = {
 };
 
 export type ModalComponentsProps = {
-  open: boolean;
+  open?: boolean;
   children: ReactNode;
-  onClosed: Function;
+  onClosed?: Function;
   title?: string;
 };

@@ -10,23 +10,27 @@ type Props = {
 
 export const ComicsHeroComponent = ({ loader, comics }: Props) => (
   <>
-    {!loader && comics?.length !== 0 && (
-      <TextComponent
-        fontFamily="Poppins_700Bold"
-        fontSize={18}
-        margin={{
-          left: 24,
-        }}
-        TextColor="white"
-      >
-        Quadrinhos
-      </TextComponent>
-    )}
+    <TextComponent
+      fontFamily="Poppins_700Bold"
+      fontSize={18}
+      margin={{
+        left: 24,
+      }}
+      TextColor="white"
+    >
+      Quadrinhos
+    </TextComponent>
     {loader && <SkeletonCarrosselComponent colorMode="dark" />}
     {!loader && comics?.length === 0 && (
       <TextComponent
         TextColor="white"
         fontFamily="Poppins_500Medium"
+        margin={{
+          left: 24,
+        }}
+        style={{
+          textAlign: "justify",
+        }}
         fontSize={12}
       >
         Atualmente, o nosso herói não está estrelando em nenhuma história em

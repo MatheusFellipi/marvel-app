@@ -5,7 +5,6 @@ import { LinearGradient } from "expo-linear-gradient";
 
 const { height } = Dimensions.get("screen");
 
-
 type Props = {
   secondary?: boolean;
 };
@@ -33,7 +32,6 @@ export const Img = styled.View`
 
 export const Profile = styled(Image)``;
 
-
 export const Characteristics = styled.View`
   flex-direction: row;
   justify-content: space-between;
@@ -41,7 +39,6 @@ export const Characteristics = styled.View`
 `;
 
 export const Gradient = styled(LinearGradient)`
-  height: ${height}px;
   justify-content: center;
   padding-top: 100%;
   padding-left: 24px;
@@ -55,4 +52,10 @@ export const HandleBack = styled.TouchableOpacity`
   width: 50px;
   height: 50px;
   z-index: 1000;
+`;
+
+export const ListAll = styled.TouchableOpacity`
+flex-direction: row;
+justify-content: space-between;
+align-items: center;
 `;

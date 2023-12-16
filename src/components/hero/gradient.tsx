@@ -14,7 +14,6 @@ type Props = {
 };
 
 export const GradientComponent = ({ data, theme, children ,back}: Props) => (
-  <Scroll bgColor={theme.colors.black}>
     <ImageBackground
       source={{
         uri: `${data?.thumbnail?.path}.${data?.thumbnail?.extension}`,
@@ -32,5 +31,4 @@ export const GradientComponent = ({ data, theme, children ,back}: Props) => (
         {children}
       </Gradient>
     </ImageBackground>
-  </Scroll>
 );

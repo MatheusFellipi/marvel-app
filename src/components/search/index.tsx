@@ -30,8 +30,8 @@ export const SearchComponent = () => {
         filterCurrent === "characters" ? "hero/[id]" : `${filterCurrent}/[id]`,
       params: { id: id },
     });
-    setData([])
-    setIsOpen(false)
+    setData([]);
+    setIsOpen(false);
   };
 
   const handleSearch = (value: string) => {
@@ -78,8 +78,10 @@ export const SearchComponent = () => {
           />
           <FilterComponent onCallBack={handleChangeFilter} />
         </View>
+
         <FlatList
           data={data}
+          nestedScrollEnabled
           style={{ paddingHorizontal: 6 }}
           showsVerticalScrollIndicator={false}
           keyExtractor={(item) => item.id.toString()}
