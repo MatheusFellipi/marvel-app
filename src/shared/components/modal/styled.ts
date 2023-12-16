@@ -1,17 +1,26 @@
 import styled from "styled-components/native";
 import { Dimensions } from "react-native";
+import { css } from "styled-components";
 
 const { height } = Dimensions.get("window");
 
-export const Container = styled.View`
-  padding-top: 40px;
+type Props = {
+  isKeyboard: boolean;
+};
+
+export const Container = styled.View<Props>`
+  ${({ isKeyboard }) => css`
+    padding-top: ${() => (isKeyboard ? "150px" : "opx")};
+  `};
   background-color: white;
   height: ${height}px;
 `;
 
-export const ContainerInput = styled.View`
+export const ModalWrapContent = styled.View`
   background-color: white;
-  height: ${height}px;
+  position: relative;
+  min-height: ${height - 150}px;
+  border-radius: 15px 15px 0px 0px;
 `;
 
 export const White = styled.View`
