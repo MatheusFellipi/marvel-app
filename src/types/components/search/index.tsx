@@ -8,13 +8,14 @@ export type ResultType = {
   id: number;
   name?: string;
   title?: string;
-  description: string
+  description: string;
   thumbnail: {
     path: string;
     extension: string;
   };
-}
+};
 
 export type CardSearchProps = {
-  item: ResultType
+  item: ResultType;
+  handleNavigation: (id: number) => void;
 };
