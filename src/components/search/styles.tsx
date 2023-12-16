@@ -20,10 +20,14 @@ export const FilterBtn = styled.TouchableOpacity<{ select: boolean }>`
   margin: 0 5px 0 5px;
   border-radius: 26px;
   justify-content: center;
-  padding: 0 12.5px;
+  padding: 0 9px;
 `;
 
 export const CardSearch = styled.TouchableOpacity`
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
   height: 160px;
   padding: 12px;
   border-radius: 14px;
