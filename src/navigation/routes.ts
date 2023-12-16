@@ -8,4 +8,13 @@ export const appStackRoutes = [
   {
     name: "hero/[id]",
   },
+  {
+    name: "comics/[id]",
+  },
+  {
+    name: "events/[id]",
+  },
+  {
+    name: "stories/[id]",
+  }
 ];

@@ -1,6 +1,6 @@
 import { Container, ModalWrapContent } from "./styled";
 import { HeaderWhite } from "./white";
-import { ModalComponentsProps } from "@/types/components/modal";
+import { ModalComponentsProps } from "@/types/shared/components/modal";
 import Modal from "react-native-modal";
 
 export const High = ({

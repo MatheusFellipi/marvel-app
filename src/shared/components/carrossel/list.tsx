@@ -1,11 +1,11 @@
-import { CardsCarrosselComponentsProps } from "@/types/components/heros";
 import { FlatList } from "react-native";
 import { CardsComponent } from "./cards";
+import { PropsCarrosselListComponents } from "@/types/shared/components/carrossel";
 
 export const CardCarrosselComponent = ({
   data,
   handleRoute,
-}: Readonly<CardsCarrosselComponentsProps>) => (
+}: Readonly<PropsCarrosselListComponents>) => (
   <FlatList
     data={data}
     horizontal

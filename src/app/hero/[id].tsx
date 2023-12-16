@@ -1,27 +1,19 @@
-import { CardCarrosselComponent } from "@/shared/components/cardCarrossel";
+import { CharacteristicsHeroComponent } from "@/components/hero/characteristics";
+import { HeroComicsComponent } from "@/components/hero/comics";
 import { controllerCharacters } from "@/services/characters";
 import { controllerSearch } from "@/services/search";
-import { Icons } from "@assets/index";
-import { FlatList, Image, ImageBackground, View } from "react-native";
 import { ResultType } from "@/types/components/search";
 import { Scroll } from "@/shared/components/scroll";
-import { SkeletonCarrosselComponent } from "@/shared/components/cardCarrossel/skeleton";
 import { TextComponent } from "@/shared/components/text";
 import { TypeCharactersDetails } from "@/types/components/heros";
 import { TypeComicsDetails } from "@/types/components/comics";
 import { useEffect, useState } from "react";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { useTheme } from "styled-components";
-import {
-  Gradient,
-  HandleBack,
-  TextDescription,
-  TextTitleProfile,
-} from "./styles";
 import { VersionHeroComponent } from "@/components/hero/version";
-import { ComicsHeroComponent } from "@/components/hero/comics";
-import { CharacteristicsHeroComponent } from "@/components/hero/characteristics";
-import { GradientComponent } from "@/components/hero/gradient";
+import { View } from "react-native";
+import { TextDescription, TextTitleProfile } from "./styles";
+import { GradientComponent } from "@/shared/components/gradient";
 
 export default function HeroScreen() {
   const theme = useTheme();
@@ -32,18 +24,12 @@ export default function HeroScreen() {
   const [allVersion, setAllVersion] = useState<ResultType[]>([]);
   const [comics, setComics] = useState<TypeComicsDetails[]>([]);
   const [loaderComics, setLoaderComics] = useState(true);
-  const [loader, setLoader] = useState(true);
 
   const details = (id: number) => {
-    controllerCharacters
-      .ById(id)
-      .then((data) => {
-        setData(data[0]);
-        allSearchVersion(data[0].name.split("(")[0]);
-      })
-      .finally(() => {
-        setLoader(false);
-      });
+    controllerCharacters.ById(id).then((data) => {
+      setData(data[0]);
+      allSearchVersion(data[0].name.split("(")[0]);
+    });
   };
 
   const comicsById = (id: number) => {
@@ -62,9 +48,6 @@ export default function HeroScreen() {
       .Get(`characters?limit=5&nameStartsWith=${name}`)
       .then((data) => {
         setAllVersion(data);
-      })
-      .finally(() => {
-        setLoader(false);
       });
   };
 
@@ -75,7 +58,7 @@ export default function HeroScreen() {
 
   return (
     <Scroll bgColor={theme.colors.black}>
-      <GradientComponent back={back} data={data} theme={theme}>
+      <GradientComponent back={back} data={data?.thumbnail}>
         <TextComponent
           TextColor={theme.colors.white}
           fontSize={16}
@@ -94,7 +77,7 @@ export default function HeroScreen() {
       </GradientComponent>
       <View style={{ marginTop: 45 }}>
         <VersionHeroComponent current={data} data={allVersion} />
-        <ComicsHeroComponent comics={comics} loader={loaderComics} />
+        <HeroComicsComponent comics={comics} loader={loaderComics} />
       </View>
     </Scroll>
   );

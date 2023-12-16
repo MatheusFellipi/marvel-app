@@ -1,20 +1,13 @@
-import { CardCarrosselComponent } from "@/shared/components/cardCarrossel";
+import { CarrosselComponent } from "@/shared/components/carrossel";
 import { TypeCharacters } from "@/types/components/heros";
 import { useEffect, useState } from "react";
-import { View } from "react-native";
-import { SubtitleText } from "../styles";
 import { controllerEvents } from "@/services/events";
-import { SkeletonCarrosselComponent } from "@/shared/components/cardCarrossel/skeleton";
-import { useNavigation } from "expo-router";
+import { useRouter } from "expo-router";
 
 export const EventsComponent = () => {
-  const { navigate } = useNavigation();
+  const router = useRouter();
   const [data, setData] = useState<TypeCharacters[]>([]);
   const [loader, setLoader] = useState(true);
-
-  const handleRoute = (id: number) => {
-    navigate(`hero/${id}` as never);
-  };
 
   const getEvents = () => {
     controllerEvents
@@ -26,16 +19,21 @@ export const EventsComponent = () => {
         setLoader(false);
       });
   };
-  
+
   useEffect(() => {
     getEvents();
   }, []);
 
   return (
-    <View>
-      <SubtitleText>Eventos</SubtitleText>
-      {loader && <SkeletonCarrosselComponent />}
-      {!loader && <CardCarrosselComponent handleRoute={handleRoute} data={data} />}
-    </View>
+    <CarrosselComponent
+      data={data}
+      loader={loader}
+      handleRoute={(id) => {
+        router.push({
+          pathname: "events/[id]",
+          params: { id: id },
+        });
+      }}
+    />
   );
 };

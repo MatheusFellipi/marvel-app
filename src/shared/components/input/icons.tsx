@@ -1,4 +1,4 @@
-import { TextComponentsProps } from "@/types/components/text";
+import { TextComponentsProps } from "@/types/shared/components/text";
 import { TextComponent } from "../text";
 import { IsShowPass } from "./styled";
 import { Icons } from "@assets/index";

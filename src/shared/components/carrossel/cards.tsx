@@ -1,15 +1,15 @@
+import { PropsCardsComponents } from "@/types/shared/components/carrossel";
 import { CardsCarrossel, TextTitleCard, styles } from "./styles";
-import { CardsComponentsProps } from "@/types/components/heros";
 import { Image } from "expo-image";
 
 export const CardsComponent = ({
   data,
   handleRoute,
-}: Readonly<CardsComponentsProps>) => {
+}: Readonly<PropsCardsComponents>) => {
   const url = `${data?.thumbnail?.path}.${data?.thumbnail?.extension}`;
 
   const title = () => {
-    let title = data?.name ?? data?.title ?? "";
+    let title = data?.name ?? data?.title ?? data?.fullName ?? "";
     if (title.length > 30) {
       title = title.slice(0, 15) + "...";
     }

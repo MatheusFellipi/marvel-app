@@ -1,4 +1,4 @@
-import { TextComponentsProps } from "@/types/components/text";
+import { TextComponentsProps } from "@/types/shared/components/text";
 import styled, { css } from "styled-components/native";
 
 type Props = {

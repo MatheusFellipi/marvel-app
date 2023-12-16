@@ -1,4 +1,4 @@
-import { InputComponentProps } from "@/types/components/input";
+import { InputComponentProps } from "@/types/shared/components/input";
 import styled, { DefaultTheme, css } from "styled-components/native";
 
 type Props = {

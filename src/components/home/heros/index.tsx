@@ -1,23 +1,13 @@
-import { CardCarrosselComponent } from '@/shared/components/cardCarrossel';
-import { controllerCharacters } from '@/services/characters';
-import { SkeletonCarrosselComponent } from '@/shared/components/cardCarrossel/skeleton';
-import { SubtitleText } from '../styles';
-import { TypeCharacters } from '@/types/components/heros';
-import { useEffect, useState } from 'react';
-import { useRouter } from 'expo-router';
-import { View } from 'react-native';
+import { CarrosselComponent } from "@/shared/components/carrossel";
+import { controllerCharacters } from "@/services/characters";
+import { TypeCharacters } from "@/types/components/heros";
+import { useEffect, useState } from "react";
+import { useRouter } from "expo-router";
 
 export const HeroComponent = () => {
   const router = useRouter();
   const [data, setData] = useState<TypeCharacters[]>([]);
   const [loader, setLoader] = useState(true);
-
-  const handleRoute = (id: number) => {
-    router.push({
-      pathname: "/hero/[id]",
-      params: { id: id }
-    } as never);
-  };
 
   const getCharacters = () => {
     controllerCharacters
@@ -35,12 +25,15 @@ export const HeroComponent = () => {
   }, []);
 
   return (
-    <View>
-      <SubtitleText>Heróis</SubtitleText>
-      {loader && <SkeletonCarrosselComponent />}
-      {!loader && (
-        <CardCarrosselComponent handleRoute={handleRoute} data={data} />
-      )}
-    </View>
+    <CarrosselComponent
+      data={data}
+      loader={loader}
+      handleRoute={(id) => {
+        router.push({
+          pathname: "hero/[id]",
+          params: { id: id },
+        });
+      }}
+    />
   );
 };

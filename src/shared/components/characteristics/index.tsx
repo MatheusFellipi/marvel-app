@@ -1,12 +1,11 @@
 import { TextComponent } from "@/shared/components/text";
+import { CharacteristicsContentProps } from "@/types/shared/components/characteristics";
 import { View } from "react-native";
 
-type Props = {
-  title?: string;
-  count?: number;
-};
-
-export const CardCharacComponent = ({ title, count }: Props) => (
+export const CharacteristicContentComponent = ({
+  title,
+  count,
+}: CharacteristicsContentProps) => (
   <View>
     <TextComponent
       TextColor="white"

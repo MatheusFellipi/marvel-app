@@ -2,7 +2,7 @@ import { Container, ContainerInput, Input } from "./styled";
 import { RFValue } from "react-native-responsive-fontsize";
 import { useState } from "react";
 import { View } from "react-native";
-import { InputComponentProps } from "@/types/components/input";
+import { InputComponentProps } from "@/types/shared/components/input";
 import { LabelInputComponent, LabelInputErrorComponent } from "./labels";
 import { IsIconShowPassComponents } from "./icons";
 

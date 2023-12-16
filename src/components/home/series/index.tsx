@@ -1,20 +1,13 @@
-import { CardCarrosselComponent } from '@/shared/components/cardCarrossel';
-import { controllerSeries } from '@/services/series';
-import { SkeletonCarrosselComponent } from '@/shared/components/cardCarrossel/skeleton';
-import { SubtitleText } from '../styles';
-import { TypeCharacters } from '@/types/components/heros';
-import { useEffect, useState } from 'react';
-import { useNavigation } from 'expo-router';
-import { View } from 'react-native';
+import { CarrosselComponent } from "@/shared/components/carrossel";
+import { controllerSeries } from "@/services/series";
+import { TypeCharacters } from "@/types/components/heros";
+import { useEffect, useState } from "react";
+import { useRouter } from "expo-router";
 
 export const SerieComponent = () => {
-  const { navigate } = useNavigation();
+  const router = useRouter();
   const [data, setData] = useState<TypeCharacters[]>([]);
   const [loader, setLoader] = useState(true);
-
-  const handleRoute = (id: number) => {
-    navigate(`hero/${id}` as never);
-  };
 
   const getSeries = () => {
     controllerSeries
@@ -29,13 +22,17 @@ export const SerieComponent = () => {
   useEffect(() => {
     getSeries();
   }, []);
+
   return (
-    <View>
-      <SubtitleText>Séries</SubtitleText>
-      {loader && <SkeletonCarrosselComponent />}
-      {!loader && (
-        <CardCarrosselComponent handleRoute={handleRoute} data={data} />
-      )}
-    </View>
+    <CarrosselComponent
+      data={data}
+      loader={loader}
+      handleRoute={(id) => {
+        router.push({
+          pathname: "series/[id]",
+          params: { id: id },
+        });
+      }}
+    />
   );
 };

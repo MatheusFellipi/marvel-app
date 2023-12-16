@@ -1,5 +1,5 @@
+import { CharacteristicContentComponent } from "@/shared/components/characteristics";
 import { Characteristics } from "../styled";
-import { CardCharacComponent } from "./card";
 import { TypeCharactersDetails } from "@/types/components/heros";
 
 type Props = {
@@ -8,9 +8,10 @@ type Props = {
 
 export const CharacteristicsHeroComponent = ({ data }: Props) => (
   <Characteristics>
-    <CardCharacComponent title="Histórias" count={data?.stories?.available} />
-    <CardCharacComponent title="Eventos" count={data?.events?.available} />
-    <CardCharacComponent title="Séries" count={data?.series?.available} />
-    <CardCharacComponent title="Quadrinhos" count={data?.comics?.available} />
+    <CharacteristicContentComponent title="Histórias" count={data?.stories?.available} />
+    <CharacteristicContentComponent title="Eventos" count={data?.events?.available} />
+    <CharacteristicContentComponent title="Séries" count={data?.series?.available} />
+    <CharacteristicContentComponent title="Quadrinhos" count={data?.comics?.available} />
   </Characteristics>
 );
+

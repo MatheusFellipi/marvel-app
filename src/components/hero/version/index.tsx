@@ -17,24 +17,23 @@ export const VersionHeroComponent = ({ data, current }: Props) => {
   return (
     <Container>
       <CardVersionHeroComponent secondary={true} data={current} />
-      {data &&
-        data?.length > 0 &&
-        data?.map((item) => (
-          <>
-            {item.id !== current?.id && (
-              <TouchableOpacity
-                onPress={() => {
-                  router.push({
-                    pathname: "hero/[id]",
-                    params: { id: item.id },
-                  });
-                }}
-              >
-                <CardVersionHeroComponent key={item.id} data={item} />
-              </TouchableOpacity>
-            )}
-          </>
-        ))}
+      {data?.map((item) => (
+        <>
+          {item.id !== current?.id && (
+            <TouchableOpacity
+              key={item.id}
+              onPress={() => {
+                router.push({
+                  pathname: "hero/[id]",
+                  params: { id: item.id },
+                });
+              }}
+            >
+              <CardVersionHeroComponent data={item} />
+            </TouchableOpacity>
+          )}
+        </>
+      ))}
       {data && data?.length > 3 && (
         <ListAll>
           <TextComponent TextColor="white" fontSize={12}>

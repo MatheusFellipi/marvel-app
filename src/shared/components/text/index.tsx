@@ -1,6 +1,6 @@
 import { RFValue } from "react-native-responsive-fontsize";
 import { Text } from "./styled";
-import { TextComponentsProps } from "@/types/components/text";
+import { TextComponentsProps } from "@/types/shared/components/text";
 
 export function TextComponent({
   fontSize = 16,
