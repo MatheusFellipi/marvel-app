@@ -33,36 +33,9 @@ export const TextTitleProfile = styled.Text`
   margin-bottom: 48px;
 `;
 
-export const TextCharacteristicsTitle = styled.Text`
-  color: ${(props) => props.theme.colors.white};
-  font-family: "Poppins_900Black";
-  font-size: 20px;
-  text-align: center;
-`;
-
-export const TextCharacteristicsDescription = styled.Text`
-  color: ${(props) => props.theme.colors.white};
-  font-family: "Poppins_500Medium";
-  font-size: 12px;
-  text-align: center;
-`;
-
 export const TextDescription = styled.Text`
   color: ${(props) => props.theme.colors.white};
   font-family: "Poppins_500Medium";
   font-size: 15px;
   text-align: justify;
-`;
-
-export const TextSectionTitle = styled.Text`
-  color: ${(props) => props.theme.colors.white};
-  font-family: "Poppins_700Bold";
-  font-size: 18px;
-  padding-left: 24px;
-`;
-
-export const Characteristics = styled.View`
-  flex-direction: row;
-  justify-content: space-between;
-  margin-bottom: 28px;
 `;
