@@ -33,8 +33,12 @@ export const SkeletonCarrossel = styled.View`
   gap: 16px;
 `;
 
-export const SubtitleText = styled.Text`
-  color: ${(props) => props.theme.colors.white};
+type Props = {
+  color?: "red" | "white";
+};
+
+export const SubtitleText = styled.Text<Props>`
+  color: ${(props) => props.theme.colors[props.color ?? "white"]};
   font-family: "Poppins_700Bold";
   font-size: 18px;
   font-style: normal;

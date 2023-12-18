@@ -19,6 +19,7 @@ export const SerieComponent = () => {
         setLoader(false);
       });
   };
+  
   useEffect(() => {
     getSeries();
   }, []);
@@ -27,6 +28,8 @@ export const SerieComponent = () => {
     <CarrosselComponent
       data={data}
       loader={loader}
+      color="red"
+      title="Séries"
       handleRoute={(id) => {
         router.push({
           pathname: "series/[id]",

@@ -1,6 +1,6 @@
-import { TextComponent } from "@/shared/components/text";
-import { ResultType } from "@/types/components/search";
-import { CardVersion, Img, Profile } from "../styled";
+import { CardVersion, Img, Profile } from './styled';
+import { ResultType } from '@/types/components/search';
+import { TextComponent } from '@/shared/components/text';
 
 type Props = {
   data?: ResultType;
@@ -12,10 +12,7 @@ export const CardVersionHeroComponent = ({ data, secondary }: Props) => (
     <Img>
       <Profile
         style={{
-          flex: 1,
-          width: 60,
-          borderTopLeftRadius: 16,
-          borderBottomLeftRadius: 16,
+          
         }}
         source={`${data?.thumbnail?.path}/portrait_fantastic.${data?.thumbnail?.extension}`}
         transition={1000}

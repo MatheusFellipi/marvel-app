@@ -10,7 +10,7 @@ type Props = {
   idComic?: number;
 };
 
-export const ComicStoriesComponent = ({ idComic }: Props) => {
+export const StoriesComponent = ({ idComic }: Props) => {
   const router = useRouter();
   const [data, setData] = useState<TypeCharactersDetails[]>([]);
 

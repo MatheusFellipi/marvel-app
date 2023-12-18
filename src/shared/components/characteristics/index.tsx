@@ -1,27 +1,38 @@
-import { TextComponent } from "@/shared/components/text";
-import { CharacteristicsContentProps } from "@/types/shared/components/characteristics";
-import { View } from "react-native";
+import { CharacteristicContentComponent } from "./CardContent";
+import { Characteristics } from "./styled";
+import { TypeComicsDetails } from "@/types/components/comics";
 
-export const CharacteristicContentComponent = ({
-  title,
-  count,
-}: CharacteristicsContentProps) => (
-  <View>
-    <TextComponent
-      TextColor="white"
-      fontFamily="Poppins_900Black"
-      fontSize={20}
-      style={{ textAlign: "center" }}
-    >
-      {count}
-    </TextComponent>
-    <TextComponent
-      TextColor="white"
-      fontFamily="Poppins_500Medium"
-      fontSize={12}
-      style={{ textAlign: "center" }}
-    >
-      {title}
-    </TextComponent>
-  </View>
+type Key =
+  | "stories"
+  | "events"
+  | "characters"
+  | "creators"
+  | "series"
+  | "comics";
+
+type Props = {
+  data?: any;
+  show?: Key[];
+};
+
+const title = (item: string) => {
+  if (item === "stories") return "Historias";
+  else if (item === "events") return "Eventos";
+  else if (item === "characters") return "Personagens";
+  else if (item === "creators") return "Criadores";
+  else if (item === "series") return "Séries";
+  else if (item === "comics") return "Quadrinhos";
+};
+
+export const CharacteristicsComponent = ({ data, show = [] }: Props) => (
+  <Characteristics>
+    {data &&
+      show.map((item) => (
+        <CharacteristicContentComponent
+          key={item}
+          title={title(item)}
+          count={data[item]?.available}
+        />
+      ))}
+  </Characteristics>
 );

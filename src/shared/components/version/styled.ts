@@ -1,7 +1,5 @@
-import styled from "styled-components/native";
-import { Dimensions } from "react-native";
 import { Image } from "expo-image";
-import { LinearGradient } from "expo-linear-gradient";
+import styled from "styled-components/native";
 
 type Props = {
   secondary?: boolean;
@@ -28,16 +26,7 @@ export const Img = styled.View`
   height: 60px;
 `;
 
-export const Profile = styled(Image)``;
-
-export const Characteristics = styled.View`
-  flex-direction: row;
-  justify-content: space-between;
-  margin-bottom: 28px;
-`;
-
-export const ListAll = styled.TouchableOpacity`
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
+export const Profile = styled(Image)`
+  flex: 1;
+  width: 60px;
 `;

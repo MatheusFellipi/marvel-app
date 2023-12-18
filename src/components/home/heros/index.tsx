@@ -28,6 +28,8 @@ export const HeroComponent = () => {
     <CarrosselComponent
       data={data}
       loader={loader}
+      color="red"
+      title="Heróis"
       handleRoute={(id) => {
         router.push({
           pathname: "hero/[id]",
