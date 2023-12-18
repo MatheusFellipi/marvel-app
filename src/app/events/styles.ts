@@ -37,6 +37,5 @@ export const TextDescription = styled.Text`
   color: ${(props) => props.theme.colors.white};
   font-family: "Poppins_500Medium";
   font-size: 15px;
-  min-height: 100px;
   text-align: justify;
 `;

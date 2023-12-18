@@ -16,5 +16,8 @@ export const appStackRoutes = [
   },
   {
     name: "stories/[id]",
+  },
+  {
+    name: "series/[id]",
   }
 ];

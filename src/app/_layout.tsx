@@ -6,6 +6,7 @@ import { ThemeProvider } from "styled-components/native";
 import { useEffect } from "react";
 import { useFonts } from "@/shared/hooks/fonts";
 import { Navigation } from "@/navigation";
+import { View } from "react-native";
 export { ErrorBoundary } from "expo-router";
 
 export const unstable_settings = {
