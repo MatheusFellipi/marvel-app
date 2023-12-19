@@ -1,15 +1,16 @@
-import { CardSearchComponent } from './cards';
-import { controllerSearch } from '@/services/search';
-import { FilterComponent } from './filters';
-import { FlatList, View } from 'react-native';
-import { Icons } from '@assets/index';
-import { InputComponent } from '@/shared/components/input';
-import { ModalComponent } from '@/shared/components/modal';
-import { query } from './query';
-import { ResultType, TypeFilter } from '@/types/components/search';
-import { SearchIcon } from './styles';
-import { useRouter } from 'expo-router';
-import { useState } from 'react';
+import { CardSearchComponent } from "./cards";
+import { controllerSearch } from "@/services/search";
+import { FilterComponent } from "./filters";
+import { FlatList, View } from "react-native";
+import { Icons } from "@assets/index";
+import { InputComponent } from "@/shared/components/input";
+import { ModalComponent } from "@/shared/components/modal";
+import { query } from "./query";
+import { ResultType, TypeFilter } from "@/types/components/search";
+import { SearchIcon } from "./styles";
+import { useRouter } from "expo-router";
+import { useState } from "react";
+import { SkeletonComponent } from "./skeleton";
 
 export const SearchComponent = () => {
   const router = useRouter();
@@ -28,13 +29,6 @@ export const SearchComponent = () => {
   };
 
   const handleNavigation = (id: number) => {
-    console.log("====================================");
-    console.log({
-      pathname:
-        filterCurrent === "characters" ? "hero/[id]" : `${filterCurrent}/[id]`,
-      params: { id: id },
-    });
-    console.log("====================================");
     router.push({
       pathname:
         filterCurrent === "characters" ? "hero/[id]" : `${filterCurrent}/[id]`,
@@ -89,6 +83,7 @@ export const SearchComponent = () => {
           />
           <FilterComponent onCallBack={handleChangeFilter} />
         </View>
+        {loader && <SkeletonComponent />}
         {!loader && (
           <FlatList
             data={data}

@@ -1,6 +1,6 @@
-import { PropsCardsComponents } from "@/types/shared/components/carrossel";
-import { CardsCarrossel, TextTitleCard, styles } from "./styles";
-import { Image } from "expo-image";
+import { CardsCarrossel, styles, TextTitleCard } from './styles';
+import { Image } from 'expo-image';
+import { PropsCardsComponents } from '@/types/shared/components/carrossel';
 
 export const CardsComponent = ({
   data,
@@ -17,9 +17,16 @@ export const CardsComponent = ({
   };
 
   return (
-    <CardsCarrossel onPress={() => handleRoute(data.id)}>
-      <Image style={styles.image} source={url} transition={1000} />
-      <TextTitleCard>{title()}</TextTitleCard>
+    <CardsCarrossel
+      onPress={() => handleRoute?.(data.id)}
+      accessibilityLabel={`Card para ${title()}. Toque para ver detalhes.`}
+    >
+      <Image style={styles.image} source={url} transition={1000} accessible />
+      <TextTitleCard
+        accessibilityLabel={`Título do card: ${title()}`}
+      >
+        {title()}
+      </TextTitleCard>
     </CardsCarrossel>
   );
 };
