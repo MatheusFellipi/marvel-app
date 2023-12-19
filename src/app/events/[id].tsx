@@ -1,41 +1,38 @@
-import { CarrosselComponent } from "@/shared/components/carrossel";
-import { controllerEvents } from "@/services/events";
-import { format } from "date-fns";
-import { GradientComponent } from "@/shared/components/gradient";
-import { ptBR } from "date-fns/locale";
-import { Scroll } from "@/shared/components/scroll";
-import { TextComponent } from "@/shared/components/text";
-import { TextTitleProfile } from "./styles";
-import { TypeCharactersDetails } from "@/types/components/heros";
-import { TypeComicsDetails } from "@/types/components/comics";
-import { TypeEventsDetails } from "@/types/components/events";
-import { useEffect, useState } from "react";
-import { useLocalSearchParams, useRouter } from "expo-router";
-import { useTheme } from "styled-components";
-import { SubtitleText, TextDescription } from "@/shared/style/font";
-import { CharacteristicsComponent } from "@/shared/components/characteristics";
+import { BackgroundComponent } from '@/shared/components/background';
+import { CarrosselComponent } from '@/shared/components/carrossel';
+import { controllerEvents } from '@/services/events';
+import { Scroll } from '@/shared/components/scroll';
+import { TypeCharactersDetails } from '@/types/components/heros';
+import { TypeComicsDetails } from '@/types/components/comics';
+import { TypeEventsDetails } from '@/types/components/events';
+import { useEffect, useState } from 'react';
+import { useLocalSearchParams, useRouter } from 'expo-router';
+import { useTheme } from 'styled-components';
+import { TextDescription } from '@/shared/style/font';
+import { TypeCreatorDetails } from '@/types/components/creator';
+
 
 export default function HeroScreen() {
   const router = useRouter();
   const theme = useTheme();
-  const { back } = useRouter();
   const { id } = useLocalSearchParams();
 
   const [loader, setLoader] = useState(true);
   const [events, setEvents] = useState<TypeEventsDetails>();
   const [comics, setComics] = useState<TypeComicsDetails[]>([]);
   const [char, setChar] = useState<TypeCharactersDetails[]>([]);
-  const [creator, setCreator] = useState<TypeCharactersDetails[]>([]);
+  const [creator, setCreator] = useState<TypeCreatorDetails[]>([]);
 
   const details = async (id: number) => {
+    setLoader(true);
     try {
       const event = await controllerEvents.ById(id);
       setEvents(event[0]);
-      const comic = await controllerEvents.ComicComics(id);
+      const comic = await controllerEvents.Comics(id);
       setComics(comic);
-      const chars = await controllerEvents.ComicChar(id);
+      const chars = await controllerEvents.Chars(id);
       setChar(chars);
-      const creator = await controllerEvents.ComicCreator(id);
+      const creator = await controllerEvents.Creators(id);
       setCreator(creator);
     } finally {
       setLoader(false);
@@ -48,30 +45,21 @@ export default function HeroScreen() {
 
   return (
     <Scroll bgColor={theme.colors.black}>
-      <GradientComponent back={back} data={events?.thumbnail}>
-        <TextComponent
-          TextColor={theme.colors.white}
-          fontSize={16}
-          fontFamily="Poppins_500Medium"
-        ></TextComponent>
-        <TextTitleProfile> {events?.title}</TextTitleProfile>
-        <CharacteristicsComponent
-          data={events}
+      <BackgroundComponent.Container
+        img={events?.thumbnail}
+        back={router.back}
+        loader={loader}
+      >
+        <BackgroundComponent.Profile labels={events?.title} />
+        <BackgroundComponent.Characteristics
           show={["creators", "characters", "comics", "series"]}
+          data={events}
         />
         <TextDescription>
-          {events?.description.length !== 0
-            ? events?.description
-            : "Infelizmente, não temos informações adicionais sobre o quadrinhos neste momento."}
+          {events?.description || "Infelizmente, não temos informações adicionais sobre o quadrinhos neste momento."}
         </TextDescription>
-        <SubtitleText color={"white"}>Publicação</SubtitleText>
-        <TextDescription>
-          O primeiro ano de publicação da série foi{" "}
-          {format(events?.start ?? "0000-01", "yyyy MMMM", { locale: ptBR })} e
-          o último ano de publicação da série foi{" "}
-          {format(events?.end ?? "0000-01", "yyyy MMMM", { locale: ptBR })}.
-        </TextDescription>
-      </GradientComponent>
+        <BackgroundComponent.Publication end={events?.end} start={events?.start} />
+      </BackgroundComponent.Container>
       <CarrosselComponent
         data={char}
         title="Personagens"

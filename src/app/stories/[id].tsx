@@ -1,39 +1,37 @@
-import { CharacteristicsComponent } from "@/shared/components/characteristics";
-import { controllerStories } from "@/services/storie";
-import { GradientComponent } from "@/shared/components/gradient";
-import { Scroll } from "@/shared/components/scroll";
-import { TextDescription, TextTitleProfile } from "./styles";
-import { TypeStoriesDetails } from "@/types/components/storie";
-import { useEffect, useState } from "react";
-import { useLocalSearchParams, useRouter } from "expo-router";
-import { useTheme } from "styled-components";
-import { TypeCharactersDetails } from "@/types/components/heros";
-import { TypeCreatorDetails } from "@/types/components/creator";
-import { CarrosselComponent } from "@/shared/components/carrossel";
+import { BackgroundComponent } from '@/shared/components/background';
+import { CarrosselComponent } from '@/shared/components/carrossel';
+import { controllerStories } from '@/services/story';
+import { Scroll } from '@/shared/components/scroll';
+import { TextDescription } from '@/shared/style/font';
+import { TypeCharactersDetails } from '@/types/components/heros';
+import { TypeComicsDetails } from '@/types/components/comics';
+import { TypeCreatorDetails } from '@/types/components/creator';
+import { TypeStoriesDetails } from '@/types/components/story';
+import { useEffect, useState } from 'react';
+import { useLocalSearchParams, useRouter } from 'expo-router';
+import { useTheme } from 'styled-components';
 
 export default function HeroScreen() {
   const router = useRouter();
   const theme = useTheme();
-  const { back } = useRouter();
   const { id } = useLocalSearchParams();
-
   const [loader, setLoader] = useState(true);
-
   const [stories, setStories] = useState<TypeStoriesDetails>();
-  const [comics, setComics] = useState<TypeStoriesDetails[]>([]);
+  const [comics, setComics] = useState<TypeComicsDetails[]>([]);
   const [creator, setCreator] = useState<TypeCreatorDetails[]>([]);
   const [char, setChar] = useState<TypeCharactersDetails[]>([]);
 
   const getDetails = async (id: number) => {
+    setLoader(true);
     try {
       const story = await controllerStories.ById(id);
       setStories(story[0]);
-      const chars = await controllerStories.ComicChar(id);
+      const chars = await controllerStories.Chars(id);
       setChar(chars);
-      const creator = await controllerStories.ComicCreator(id);
+      const creator = await controllerStories.Creators(id);
       setCreator(creator);
-      const comis = await controllerStories.ComicsById(id);
-      setComics(comis);
+      const comic = await controllerStories.Comics(id);
+      setComics(comic);
       console.log(story[0]);
     } finally {
       setLoader(false);
@@ -46,18 +44,22 @@ export default function HeroScreen() {
 
   return (
     <Scroll bgColor={theme.colors.black}>
-      <GradientComponent back={back} data={stories?.thumbnail}>
-        <TextTitleProfile> {stories?.title}</TextTitleProfile>
-        <CharacteristicsComponent
+      <BackgroundComponent.Container
+        img={stories?.thumbnail}
+        back={router.back}
+        loader={loader}
+      >
+        <BackgroundComponent.Profile labels={stories?.title} />
+        <BackgroundComponent.Characteristics
           show={["comics", "events", "characters", "creators"]}
           data={stories}
         />
         <TextDescription>
-          {stories?.description.length !== 0
-            ? stories?.description
-            : "Infelizmente, não temos informações adicionais sobre o quadrinhos neste momento."}
+          {stories?.description ||
+            "Infelizmente, não temos informações adicionais sobre o historia neste momento."}
         </TextDescription>
-      </GradientComponent>
+      </BackgroundComponent.Container>
+
       <CarrosselComponent
         data={creator}
         title="Criadores"

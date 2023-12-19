@@ -1,12 +1,11 @@
+import { BackgroundComponent } from '@/shared/components/background';
 import { CarrosselComponent } from '@/shared/components/carrossel';
-import { CharacteristicsComponent } from '@/shared/components/characteristics';
 import { controllerCharacters } from '@/services/characters';
 import { controllerSearch } from '@/services/search';
-import { GradientComponent } from '@/shared/components/gradient';
 import { ResultType } from '@/types/components/search';
 import { Scroll } from '@/shared/components/scroll';
-import { TextComponent } from '@/shared/components/text';
-import { TextDescription, TextTitleProfile } from './styles';
+import { TextDescription } from '@/shared/style/font';
+import { TimelineComponent } from '@/shared/components/timeline';
 import { TypeCharactersDetails } from '@/types/components/heros';
 import { TypeComicsDetails } from '@/types/components/comics';
 import { TypeEventsDetails } from '@/types/components/events';
@@ -15,7 +14,6 @@ import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useTheme } from 'styled-components';
 import { VersionHeroComponent } from '@/shared/components/version';
 import { View } from 'react-native';
-import { TimelineComponent } from '@/shared/components/timeline';
 
 export default function HeroScreen() {
   const router = useRouter();
@@ -28,12 +26,13 @@ export default function HeroScreen() {
   const [allVersion, setAllVersion] = useState<ResultType[]>([]);
 
   const getDetails = async (id: number) => {
+    setLoader(true);
     try {
       const char = await controllerCharacters.ById(id);
       setData(char[0]);
-      const comis = await controllerCharacters.CharComics(id);
+      const comis = await controllerCharacters.Comics(id);
       setComics(comis);
-      const event = await controllerCharacters.CharEvents(id);
+      const event = await controllerCharacters.Events(id);
       setEvents(event);
       const name = char[0].name.split("(")[0];
       const search = await controllerSearch.Get(
@@ -51,29 +50,20 @@ export default function HeroScreen() {
 
   return (
     <Scroll bgColor={theme.colors.black}>
-      <GradientComponent back={router.back} data={data?.thumbnail}>
-        <TextComponent
-          TextColor={theme.colors.white}
-          fontSize={16}
-          fontFamily="Poppins_500Medium"
-        >
-          {data?.name.split("(")[1] &&
-            data?.name.split("(")[1].replaceAll(")", "")}
-        </TextComponent>
-        <TextTitleProfile>{data?.name.split("(")[0]}</TextTitleProfile>
-        <CharacteristicsComponent
-          show={["stories", "events", "series", "comics"]}
-          data={data}
-        />
+      <BackgroundComponent.Container
+        img={data?.thumbnail}
+        back={router.back}
+        loader={loader}
+      >
+        <BackgroundComponent.Profile labels={data?.name} />
+        <BackgroundComponent.Characteristics show={["stories", "events", "series", "comics"]} data={data} />
         <TextDescription>
-          {data?.description.length !== 0
-            ? data?.description
-            : "Infelizmente, não temos informações adicionais sobre o herói neste momento."}
+          {data?.description || "Infelizmente, não temos informações adicionais sobre o quadrinhos neste momento."}
         </TextDescription>
-      </GradientComponent>
+      </BackgroundComponent.Container>
       <View style={{ marginTop: 45 }}>
-        <TimelineComponent data={events} />
-        <VersionHeroComponent current={data} data={allVersion} />
+        <TimelineComponent data={events} loader={loader} />
+        <VersionHeroComponent current={data} data={allVersion} loader={loader} />
         <CarrosselComponent
           data={comics}
           title="Quadrinhos"

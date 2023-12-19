@@ -1,6 +1,5 @@
-import { CharacteristicContentComponent } from "./CardContent";
+import { CharacteristicContentComponent } from "./cardContent";
 import { Characteristics } from "./styled";
-import { TypeComicsDetails } from "@/types/components/comics";
 
 type Key =
   | "stories"

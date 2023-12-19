@@ -1,5 +1,5 @@
 import { CardSearch } from "./styles";
-import { View } from "react-native";
+import { View, TouchableOpacity, AccessibilityInfo } from "react-native";
 import { TextComponent } from "@/shared/components/text";
 import { useTheme } from "styled-components";
 import { Image } from "expo-image";
@@ -15,7 +15,9 @@ export const CardSearchComponent = ({
 
   const description = () => {
     let title =
-      item?.description.length > 0 ? item?.description : "Não possui descrição";
+      item?.description !== null && item?.description.length > 0
+        ? item?.description
+        : "Não possui descrição";
 
     if (title.length > 200) {
       title = title.slice(0, 90) + " ...";
@@ -25,14 +27,29 @@ export const CardSearchComponent = ({
 
   const title = () => {
     let title = item?.name ?? item?.title ?? "";
-    if (title.length > 20) {
+    if (title !== null && title.length > 20) {
       title = title.slice(0, 15) + "...";
     }
     return title;
   };
 
+  const handlePress = () => handleNavigation(item.id);
+  
+  const handleAccessibility = () => {
+    AccessibilityInfo.announceForAccessibility(
+      `Cartão para ${item.name ?? item.title}. Toque duplo para ver detalhes.`
+    );
+  };
+
   return (
-    <CardSearch onPress={() => handleNavigation(item.id)}>
+    <CardSearch
+      onPress={handlePress}
+      onAccessibilityTap={handleAccessibility}
+      accessibilityRole="button"
+      accessibilityLabel={`Cartão para ${
+        item?.name ?? item?.title
+      }. Toque duplo para ver detalhes.`}
+    >
       <View
         style={{
           width: 100,
@@ -43,6 +60,7 @@ export const CardSearchComponent = ({
           style={{ flex: 1, width: "100%", borderRadius: 16 }}
           source={url}
           transition={1000}
+          accessible
         />
       </View>
       <View>

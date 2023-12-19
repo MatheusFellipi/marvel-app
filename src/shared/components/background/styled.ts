@@ -16,3 +16,9 @@ export const HandleBack = styled.TouchableOpacity`
   height: 50px;
   z-index: 1000;
 `;
+
+export const Characteristics = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 28px;
+`;

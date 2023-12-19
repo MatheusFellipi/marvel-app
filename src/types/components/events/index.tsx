@@ -29,8 +29,4 @@ export type TypeEventsDetails = {
     resourceURI: string;
     name: string;
   };
-  previous: {
-    resourceURI: string;
-    name: string;
-  };
 };

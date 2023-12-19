@@ -17,19 +17,19 @@ export const controllerSeries = {
     );
     return data.data.results;
   },
-  ComicsSerie: async (id: number) => {
+  Comics: async (id: number) => {
     const { data } = await connection.GetData<TypeComicsDetails>(
       `${base}/${id}/comics?`
     );
     return data.data.results;
   },
-  ComicCreator: async (id: number) => {
+  Creator: async (id: number) => {
     const { data } = await connection.GetData<TypeCreatorDetails>(
       `${base}/${id}/creators?`
     );
     return data.data.results;
   },
-  ComicEvents: async (id: number) => {
+  Events: async (id: number) => {
     const { data } = await connection.GetData<TypeEventsDetails>(
       `${base}/${id}/events?`
     );

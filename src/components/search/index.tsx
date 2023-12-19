@@ -1,20 +1,22 @@
-import { useEffect, useState } from "react";
-import { SearchIcon } from "./styles";
-import { Icons } from "@assets/index";
-import { ModalComponent } from "@/shared/components/modal";
-import { InputComponent } from "@/shared/components/input";
-import { FilterComponent } from "./filters";
-import { ResultType, TypeFilter } from "@/types/components/search";
-import { query } from "./query";
-import { FlatList, View } from "react-native";
-import { controllerSearch } from "@/services/search";
-import { CardSearchComponent } from "./cards";
-import { useRouter } from "expo-router";
+import { CardSearchComponent } from './cards';
+import { controllerSearch } from '@/services/search';
+import { FilterComponent } from './filters';
+import { FlatList, View } from 'react-native';
+import { Icons } from '@assets/index';
+import { InputComponent } from '@/shared/components/input';
+import { ModalComponent } from '@/shared/components/modal';
+import { query } from './query';
+import { ResultType, TypeFilter } from '@/types/components/search';
+import { SearchIcon } from './styles';
+import { useRouter } from 'expo-router';
+import { useState } from 'react';
 
 export const SearchComponent = () => {
   const router = useRouter();
 
   const [data, setData] = useState<ResultType[]>([]);
+  const [value, setValue] = useState("");
+
   const [isOpen, setIsOpen] = useState(false);
   const [loader, setLoader] = useState(false);
 
@@ -22,22 +24,30 @@ export const SearchComponent = () => {
 
   const handleChangeFilter = (filter: TypeFilter) => {
     setFilterCurrent(filter.type);
+    if (value.length > 0) handleSearch(value, filter.type);
   };
 
   const handleNavigation = (id: number) => {
+    console.log("====================================");
+    console.log({
+      pathname:
+        filterCurrent === "characters" ? "hero/[id]" : `${filterCurrent}/[id]`,
+      params: { id: id },
+    });
+    console.log("====================================");
     router.push({
       pathname:
         filterCurrent === "characters" ? "hero/[id]" : `${filterCurrent}/[id]`,
       params: { id: id },
     });
-    setData([]);
-    setIsOpen(false);
+    clear();
   };
 
-  const handleSearch = (value: string) => {
-    if (value.length < 3) return;
-
-    const url = query(filterCurrent, value);
+  const handleSearch = (search: string, filter: string) => {
+    if (search.length < 3) return;
+    setValue(search);
+    setLoader(true);
+    const url = query(filter, search);
     controllerSearch
       .Get(url)
       .then((res) => {
@@ -48,16 +58,17 @@ export const SearchComponent = () => {
       });
   };
 
+  const clear = () => {
+    setFilterCurrent("characters");
+    setIsOpen(false);
+    setData([]);
+  };
   return (
     <>
       <SearchIcon onPress={() => setIsOpen(true)}>
         <Icons.Nav.Search />
       </SearchIcon>
-      <ModalComponent.High
-        onClosed={() => setIsOpen(false)}
-        title="Pesquisa"
-        open={isOpen}
-      >
+      <ModalComponent.High onClosed={clear} title="Pesquisa" open={isOpen}>
         <View
           style={{
             paddingHorizontal: 24,
@@ -73,25 +84,26 @@ export const SearchComponent = () => {
             margin={{
               bottom: 13,
             }}
-            onChangeText={handleSearch}
+            onChangeText={(text: string) => handleSearch(text, filterCurrent)}
             placeholder="Faça sua busca"
           />
           <FilterComponent onCallBack={handleChangeFilter} />
         </View>
-
-        <FlatList
-          data={data}
-          nestedScrollEnabled
-          style={{ paddingHorizontal: 6 }}
-          showsVerticalScrollIndicator={false}
-          keyExtractor={(item) => item.id.toString()}
-          renderItem={({ item }) => (
-            <CardSearchComponent
-              handleNavigation={handleNavigation}
-              item={item}
-            />
-          )}
-        />
+        {!loader && (
+          <FlatList
+            data={data}
+            nestedScrollEnabled
+            style={{ paddingHorizontal: 6 }}
+            showsVerticalScrollIndicator={false}
+            keyExtractor={(item) => item.id.toString()}
+            renderItem={({ item }) => (
+              <CardSearchComponent
+                handleNavigation={handleNavigation}
+                item={item}
+              />
+            )}
+          />
+        )}
       </ModalComponent.High>
     </>
   );

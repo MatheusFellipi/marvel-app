@@ -1,40 +1,36 @@
+import { BackgroundComponent } from "@/shared/components/background";
 import { CarrosselComponent } from "@/shared/components/carrossel";
-import { CharacteristicsComponent } from "@/shared/components/characteristics";
-import { controllerComics } from "@/services/comics";
-import { GradientComponent } from "@/shared/components/gradient";
+import { controllerCreator } from "@/services/creator";
 import { Scroll } from "@/shared/components/scroll";
-import { TextComponent } from "@/shared/components/text";
-import { TextDescription, TextTitleProfile } from "./styles";
-import { TypeCharactersDetails } from "@/types/components/heros";
 import { TypeComicsDetails } from "@/types/components/comics";
 import { TypeCreatorDetails } from "@/types/components/creator";
-import { TypeStoriesDetails } from "@/types/components/storie";
+import { TypeEventsDetails } from "@/types/components/events";
+import { TypeStoriesDetails } from "@/types/components/story";
 import { useEffect, useState } from "react";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { useTheme } from "styled-components";
-import { controllerCreator } from "@/services/creator";
 
 export default function HeroScreen() {
   const router = useRouter();
   const theme = useTheme();
-  const { back } = useRouter();
   const { id } = useLocalSearchParams();
 
   const [loader, setLoader] = useState(true);
 
   const [data, setData] = useState<TypeCreatorDetails>();
   const [comics, setComics] = useState<TypeComicsDetails[]>([]);
-  const [event, setEvents] = useState<TypeCharactersDetails[]>([]);
+  const [event, setEvent] = useState<TypeEventsDetails[]>([]);
   const [stories, setStories] = useState<TypeStoriesDetails[]>([]);
 
   const details = async (id: number) => {
+    setLoader(true);
     try {
       const creator = await controllerCreator.ById(id);
       setData(creator[0]);
       const comic = await controllerCreator.Comics(id);
       setComics(comic);
       const event = await controllerCreator.Events(id);
-      setEvents(event);
+      setEvent(event);
       const story = await controllerCreator.Stories(id);
       setStories(story);
     } finally {
@@ -48,14 +44,19 @@ export default function HeroScreen() {
 
   return (
     <Scroll bgColor={theme.colors.black}>
-      <GradientComponent back={back} data={data?.thumbnail}>
-        <TextTitleProfile> {data?.fullName}</TextTitleProfile>
-        <CharacteristicsComponent
+      <BackgroundComponent.Container
+        img={data?.thumbnail}
+        back={router.back}
+        loader={loader}
+      >
+        <BackgroundComponent.Profile
+          labels={`${data?.fullName} ${data?.suffix}`}
+        />
+        <BackgroundComponent.Characteristics
           show={["stories", "events", "series"]}
           data={data}
         />
-      </GradientComponent>
-
+      </BackgroundComponent.Container>
       <CarrosselComponent
         data={comics}
         title="Quadrinhos"
@@ -69,7 +70,7 @@ export default function HeroScreen() {
       />
       <CarrosselComponent
         data={event}
-        title="eventos"
+        title="Eventos"
         loader={loader}
         handleRoute={(id) => {
           router.push({

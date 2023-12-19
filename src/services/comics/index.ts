@@ -1,8 +1,8 @@
-import { TypeComicsDetails } from "@/types/components/comics";
-import { connection } from "../connections";
-import { TypeCharactersDetails } from "@/types/components/heros";
-import { TypeCreatorDetails } from "@/types/components/creator";
-import { TypeStoriesDetails } from "@/types/components/storie";
+import { connection } from '../connections';
+import { TypeCharactersDetails } from '@/types/components/heros';
+import { TypeComicsDetails } from '@/types/components/comics';
+import { TypeCreatorDetails } from '@/types/components/creator';
+import { TypeStoriesDetails } from '@/types/components/story';
 
 const base = "comics";
 
@@ -17,19 +17,19 @@ export const controllerComics = {
     );
     return data.data.results;
   },
-  ComicChar: async (id: number) => {
+  Chars: async (id: number) => {
     const { data } = await connection.GetData<TypeCharactersDetails>(
       `${base}/${id}/characters?`
     );
     return data.data.results;
   },
-  ComicCreator: async (id: number) => {
+  Creators: async (id: number) => {
     const { data } = await connection.GetData<TypeCreatorDetails>(
       `${base}/${id}/creators?`
     );
     return data.data.results;
   },
-  ComicStories: async (id: number) => {
+  Stories: async (id: number) => {
     const { data } = await connection.GetData<TypeStoriesDetails>(
       `${base}/${id}/stories?`
     );

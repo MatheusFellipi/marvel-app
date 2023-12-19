@@ -24,8 +24,4 @@ export type TypeStoriesDetails = {
   creators: {
     available: number;
   };
-  originalissue: {
-    resourceURI: string;
-    name: string;
-  };
 };
