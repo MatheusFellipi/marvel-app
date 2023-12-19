@@ -19,5 +19,8 @@ export const appStackRoutes = [
   },
   {
     name: "series/[id]",
+  },
+  {
+    name: "creator/[id]",
   }
 ];

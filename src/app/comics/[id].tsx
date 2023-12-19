@@ -18,15 +18,14 @@ export default function HeroScreen() {
   const theme = useTheme();
   const { back } = useRouter();
   const { id } = useLocalSearchParams();
-
   const [loader, setLoader] = useState(true);
-
   const [data, setData] = useState<TypeComicsDetails>();
   const [creator, setCreator] = useState<TypeCreatorDetails[]>([]);
   const [char, setChar] = useState<TypeCharactersDetails[]>([]);
   const [stories, setStories] = useState<TypeStoriesDetails[]>([]);
 
   const details = async (id: number) => {
+    setLoader(true)
     try {
       const comic = await controllerComics.ById(id);
       setData(comic[0]);
@@ -70,7 +69,6 @@ export default function HeroScreen() {
           router.push({ pathname: "stories/[id]", params: { id: id } })
         }
       />
-      <CarrosselComponent data={creator} loader={loader} title="Criadores" />
       <CarrosselComponent
         data={char}
         title="Personagens"
@@ -79,6 +77,7 @@ export default function HeroScreen() {
           router.push({ pathname: "hero/[id]", params: { id: id } })
         }
       />
+      <CarrosselComponent data={creator} loader={loader} title="Criadores" />
     </Scroll>
   );
 }

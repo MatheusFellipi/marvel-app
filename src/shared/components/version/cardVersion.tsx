@@ -22,6 +22,7 @@ export const CardVersionHeroComponent = ({ data, secondary }: Props) => (
       fontSize={16}
       TextColor="white"
       fontFamily="Poppins_600SemiBold"
+      maxWidth={250}
     >
       {data?.name}
     </TextComponent>

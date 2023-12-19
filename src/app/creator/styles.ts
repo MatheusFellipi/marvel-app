@@ -32,3 +32,10 @@ export const TextTitleProfile = styled.Text`
   font-size: 40px;
   margin-bottom: 48px;
 `;
+
+export const TextDescription = styled.Text`
+  color: ${(props) => props.theme.colors.white};
+  font-family: "Poppins_500Medium";
+  font-size: 15px;
+  text-align: justify;
+`;

@@ -58,7 +58,17 @@ export default function HeroScreen() {
             : "Infelizmente, não temos informações adicionais sobre o quadrinhos neste momento."}
         </TextDescription>
       </GradientComponent>
-      <CarrosselComponent data={creator} title="Criadores" loader={loader} />
+      <CarrosselComponent
+        data={creator}
+        title="Criadores"
+        loader={loader}
+        handleRoute={(id) => {
+          router.push({
+            pathname: "creator/[id]",
+            params: { id: id },
+          });
+        }}
+      />
       <CarrosselComponent
         data={char}
         title="Personages"
