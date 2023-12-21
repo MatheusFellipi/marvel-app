@@ -7,7 +7,6 @@ export type TypeUser = {
   token: string;
   user: {
     username: string;
-    id: number;
   };
 };
 
@@ -23,7 +22,6 @@ export type TypePassword = {
 
 export type TypeCodeForgot = {
   username: string;
-  id: number;
   code: string;
 };
 
