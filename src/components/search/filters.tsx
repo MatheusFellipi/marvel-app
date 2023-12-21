@@ -61,7 +61,7 @@ export const FilterComponent = ({ onCallBack }: Props) => {
         >
           <TextDescription
             size={12}
-            color={item.selected ? theme.colors.white : theme.colors.dark}
+            color={item.selected ? "white" : "dark"}
             accessibilityRole="text"
           >
             {item.name}

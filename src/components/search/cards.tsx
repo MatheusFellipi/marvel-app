@@ -68,9 +68,15 @@ export const CardSearchComponent = ({
       </View>
       <View>
         <TextDescription size={20}>{title()}</TextDescription>
-        <TextDescriptionPoppinsLight>
-          {description()}
-        </TextDescriptionPoppinsLight>
+        <View
+          style={{
+            maxWidth: 230,
+          }}
+        >
+          <TextDescriptionPoppinsLight>
+            {description()}
+          </TextDescriptionPoppinsLight>
+        </View>
       </View>
       <Icons.Nav.Arrow />
     </CardSearch>
