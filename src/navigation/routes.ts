@@ -3,6 +3,9 @@ export const appStackRoutes = [
     name: "index",
   },
   {
+    name: "userCreate/index",
+  },
+  {
     name: "login/forgot",
   },
   {

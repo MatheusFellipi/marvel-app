@@ -6,6 +6,7 @@ import { ProfileTitle, TextDescription } from '@/shared/style/font';
 import { SubmitBtnGradient } from './submitBtn';
 import { TypeAuth } from '@/types/components/auth';
 import { useRouter } from 'expo-router';
+import { View } from 'moti';
 
 type Props = {
   values: TypeAuth;
@@ -54,15 +55,26 @@ export const FormLoginComponent = ({
           });
         }}
       />
+      <View>
+      <Forgot
+        onPress={() => {
+          router.push({
+            pathname: "userCreate/",
+          });
+        }}
+      >
+        <TextDescription color="greyLight">Cadastrar usuário</TextDescription>
+      </Forgot>
       <Forgot
         onPress={() => {
           router.push({
             pathname: "login/forgot",
           });
         }}
-      >
+        >
         <TextDescription color="greyLight">Forgot Password?</TextDescription>
       </Forgot>
+        </View>
       <SubmitBtnGradient label="entrar" onPress={submit} loader={loader} />
     </>
   );

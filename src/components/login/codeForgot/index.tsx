@@ -27,13 +27,13 @@ export const CodeForgotComponents = () => {
     .fill(null)
     .map(() => useRef<TextInput>(null));
 
-    const handleInputChange = (text: string, index: number) => {
-      if (text.length === 1 && index < inputRefs.length - 1) {
-        inputRefs[index + 1].current?.focus();
-      } else if (text.length === 0 && index > 0) {
-        inputRefs[index - 1].current?.focus();
-      }
-    };
+  const handleInputChange = (text: string, index: number) => {
+    if (text.length === 1 && index < inputRefs.length - 1) {
+      inputRefs[index + 1].current?.focus();
+    } else if (text.length === 0 && index > 0) {
+      inputRefs[index - 1].current?.focus();
+    }
+  };
 
   const handleLogin = async () => {
     setLoader(true);
@@ -63,83 +63,65 @@ export const CodeForgotComponents = () => {
   }, []);
 
   return (
-    <BackGroundComponents>
-      <TouchableOpacity
-        onPress={() => {
-          router.back();
-        }}
+    <BackGroundComponents back={() => router.back()}>
+      <SubtitleText size={30} margin={[30, 0, 0, 0]}>
+        Recuperar a senha
+      </SubtitleText>
+      <View style={styles.container}>
+        {inputRefs.map((inputRef, index) => (
+          <TextInput
+            key={index}
+            ref={inputRef}
+            style={{
+              ...styles.input,
+              color: "#A4A4A4",
+              fontFamily: "Poppins_500Medium",
+              fontSize: 14.33,
+            }}
+            maxLength={1}
+            keyboardType="numeric"
+            onChangeText={(text) => {
+              const updatedValue = [...value];
+              updatedValue[index] = text;
+              setValue(updatedValue.join(""));
+
+              handleInputChange(text, index);
+            }}
+            value={value[index]}
+          />
+        ))}
+      </View>
+      <View
         style={{
-          position: "absolute",
-          top: 40,
-          left: 20,
-          width: 40,
-          height: 40,
+          justifyContent: "flex-end",
+          alignItems: "flex-end",
+          width: "100%",
+          paddingHorizontal: 30,
         }}
       >
-        <Icons.Nav.Back />
-      </TouchableOpacity>
-      <Form>
-        <SubtitleText size={30} margin={[30, 0, 0, 0]}>
-          Recuperar a senha
-        </SubtitleText>
-        <View style={styles.container}>
-          {inputRefs.map((inputRef, index) => (
-            <TextInput
-              key={index}
-              ref={inputRef}
-              style={{
-                ...styles.input,
-                color: "#A4A4A4",
-                fontFamily: "Poppins_500Medium",
-                fontSize: 14.33,
-              }}
-              maxLength={1}
-              keyboardType="numeric"
-              onChangeText={(text) => {
-                const updatedValue = [...value];
-                updatedValue[index] = text;
-                setValue(updatedValue.join(""));
+        {countdown !== 0 && (
+          <TextDescription color="greyLight">
+            Reenvia código em {countdown}
+          </TextDescription>
+        )}
 
-                handleInputChange(text, index);
-              }}
-              value={value[index]}
-            />
-          ))}
-        </View>
-        <View
-          style={{
-            justifyContent: "flex-end",
-            alignItems: "flex-end",
-            width: "100%",
-            paddingHorizontal: 30,
-          }}
-        >
-          {countdown !== 0 && (
-            <TextDescription color="greyLight">
-              Reenvia código em {countdown}
-            </TextDescription>
-          )}
-
-          {countdown === 0 && (
-            <Forgot
-              onPress={() => {
-                setCountdown(45);
-              }}
-            >
-              <TextDescription color="greyLight">
-                Reenvia código
-              </TextDescription>
-            </Forgot>
-          )}
-        </View>
-        <View style={{ marginTop: 20, width: "100%" }}>
-          <SubmitBtnGradient
-            label="recuperar"
-            onPress={handleLogin}
-            loader={loader}
-          />
-        </View>
-      </Form>
+        {countdown === 0 && (
+          <Forgot
+            onPress={() => {
+              setCountdown(45);
+            }}
+          >
+            <TextDescription color="greyLight">Reenvia código</TextDescription>
+          </Forgot>
+        )}
+      </View>
+      <View style={{ marginTop: 20, width: "100%" }}>
+        <SubmitBtnGradient
+          label="recuperar"
+          onPress={handleLogin}
+          loader={loader}
+        />
+      </View>
     </BackGroundComponents>
   );
 };

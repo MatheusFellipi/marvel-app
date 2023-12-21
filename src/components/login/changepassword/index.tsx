@@ -48,22 +48,7 @@ export const ChangePasswordComponents = () => {
   };
 
   return (
-    <BackGroundComponents>
-      <TouchableOpacity
-        onPress={() => {
-          router.back();
-        }}
-        style={{
-          position: "absolute",
-          top: 40,
-          left: 20,
-          width: 40,
-          height: 40,
-        }}
-      >
-        <Icons.Nav.Back />
-      </TouchableOpacity>
-      <Form>
+    <BackGroundComponents back={() => router.back()}>
         <SubtitleText size={30} margin={[30, 0, 0, 0]}>
           Trocar a senha
         </SubtitleText>
@@ -81,7 +66,7 @@ export const ChangePasswordComponents = () => {
         />
         <InputLoginComponent
           errorLabel={errors.rePassword}
-          label="Repede a senha"
+          label="Confirmar Senha"
           icon={<Icons.Key />}
           value={values.rePassword}
           onChangeText={(text) => {
@@ -99,7 +84,6 @@ export const ChangePasswordComponents = () => {
             loader={loader}
           />
         </View>
-      </Form>
     </BackGroundComponents>
   );
 };

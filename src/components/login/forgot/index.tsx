@@ -35,48 +35,32 @@ export const ForgotComponents = () => {
   };
 
   return (
-    <BackGroundComponents>
-      <TouchableOpacity
-        onPress={() => {
-          router.back();
+    <BackGroundComponents back={() => router.back()}>
+      <SubtitleText size={30} margin={[30, 0, 0, 0]}>
+        Recuperar a senha
+      </SubtitleText>
+      <InputLoginComponent
+        errorLabel={errors}
+        icon={<Icons.User />}
+        value={values}
+        onChangeText={(text) => {
+          setValues(text.toLowerCase());
         }}
-        style={{
-          position: "absolute",
-          top: 40,
-          left: 20,
-          width: 40,
-          height: 40,
+      />
+      <Forgot
+        onPress={() => {
+          router.push({ pathname: "login/codeForgot" });
         }}
       >
-        <Icons.Nav.Back />
-      </TouchableOpacity>
-      <Form>
-        <SubtitleText size={30} margin={[30, 0, 0, 0]}>
-          Recuperar a senha
-        </SubtitleText>
-        <InputLoginComponent
-          errorLabel={errors}
-          icon={<Icons.User />}
-          value={values}
-          onChangeText={(text) => {
-            setValues(text.toLowerCase());
-          }}
+        <TextDescription color="greyLight">Ja tenho o código</TextDescription>
+      </Forgot>
+      <View style={{ marginTop: 20, width: "100%" }}>
+        <SubmitBtnGradient
+          label="recuperar"
+          onPress={handleLogin}
+          loader={loader}
         />
-        <Forgot
-          onPress={() => {
-            router.push({ pathname: "login/codeForgot" });
-          }}
-        >
-          <TextDescription color="greyLight">Ja tenho o código</TextDescription>
-        </Forgot>
-        <View style={{ marginTop: 20, width: "100%" }}>
-          <SubmitBtnGradient
-            label="recuperar"
-            onPress={handleLogin}
-            loader={loader}
-          />
-        </View>
-      </Form>
+      </View>
     </BackGroundComponents>
   );
 };

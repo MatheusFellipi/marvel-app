@@ -13,6 +13,7 @@ export const FooterComponent = () => (
         gap: 7,
         marginTop: 18,
         alignItems: "center",
+        zIndex: 2000,
       }}
     >
       <LineGradient
@@ -28,9 +29,15 @@ export const FooterComponent = () => (
       />
     </View>
     <View style={{ flexDirection: "row", gap: 20.34, marginTop: 18 }}>
-      <LoginOpcionalComponent Icon={<Icons.Rede.Google width={20} height={20} />} />
-      <LoginOpcionalComponent Icon={<Icons.Rede.Apple width={20} height={20}/>} />
-      <LoginOpcionalComponent Icon={<Icons.Rede.Face width={30} height={20}/>} />
+      <LoginOpcionalComponent
+        Icon={<Icons.Rede.Google width={20} height={20} />}
+      />
+      <LoginOpcionalComponent
+        Icon={<Icons.Rede.Apple width={20} height={20} />}
+      />
+      <LoginOpcionalComponent
+        Icon={<Icons.Rede.Face width={30} height={20} />}
+      />
     </View>
   </>
 );

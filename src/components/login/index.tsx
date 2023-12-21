@@ -1,14 +1,13 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Alert } from 'react-native';
-import { checkLogin } from './validade';
-import { controllerAuth } from '@/services/auth';
-import { Form } from './styles';
-import { TypeAuth } from '@/types/components/auth';
-import { useNavigation } from 'expo-router';
-import { useState } from 'react';
-import { FormLoginComponent } from './components/form';
-import { BackGroundComponents } from './components/background';
-import { FooterComponent } from './components/footer';
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { Alert } from "react-native";
+import { checkLogin } from "./validade";
+import { controllerAuth } from "@/services/auth";
+import { TypeAuth } from "@/types/components/auth";
+import { useNavigation } from "expo-router";
+import { useState } from "react";
+import { FormLoginComponent } from "./components/form";
+import { BackGroundComponents } from "./components/background";
+import { FooterComponent } from "./components/footer";
 
 export const LoginComponents = () => {
   const { navigate } = useNavigation();
@@ -44,16 +43,14 @@ export const LoginComponents = () => {
 
   return (
     <BackGroundComponents>
-      <Form>
-        <FormLoginComponent
-          values={values}
-          loader={loader}
-          setValues={setValues}
-          errors={errors}
-          submit={handleLogin}
-        />
-        <FooterComponent />
-      </Form>
+      <FormLoginComponent
+        values={values}
+        loader={loader}
+        setValues={setValues}
+        errors={errors}
+        submit={handleLogin}
+      />
+      <FooterComponent />
     </BackGroundComponents>
   );
 };

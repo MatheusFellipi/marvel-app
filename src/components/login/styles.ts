@@ -11,8 +11,7 @@ export const LineGradient = styled(LinearGradient)`
 
 export const Form = styled.View`
   margin-top: 80px;
-  height: ${height}px;
-  align-items: center;
+  height: ${height - 250}px;
   padding: 0 30px;
   border-radius: 59px 59px 0 0;
   background-color: #240024;

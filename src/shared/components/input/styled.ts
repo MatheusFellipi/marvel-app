@@ -47,9 +47,9 @@ export const TextError = styled.Text`
 `;
 
 export const TextLabels = styled.Text`
-  font-family: "Poppins_400Regular";
-  font-size: 10px;
-  color: ${(props) => props.theme.colors.red};
+  font-family: "Poppins_500Medium";
+  font-size: 14px;
+  color: ${(props) => props.theme.colors.white};
 `;
 
 

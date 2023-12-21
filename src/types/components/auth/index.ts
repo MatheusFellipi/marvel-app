@@ -26,3 +26,11 @@ export type TypeCodeForgot = {
   id: number;
   code: string;
 };
+
+
+export type TypeUserCreate = {
+  fullName:string;
+  email:string;
+  password:string;
+  confirmPassword:string;
+};
