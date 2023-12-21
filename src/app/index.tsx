@@ -1,19 +1,7 @@
-import { useNavigation } from "expo-router";
-import { Button, View } from "react-native";
+import { LoginComponents } from "@/components/login";
 
-export default function Login() {
-  const navigation = useNavigation();
+const LoginScreen = () => {
+  return <LoginComponents />;
+};
 
-  return (
-    <View
-      style={{
-        marginTop: 34,
-      }}
-    >
-      <Button
-        title="home"
-        onPress={() => navigation.navigate("home/index" as never)}
-      />
-    </View>
-  );
-}
+export default LoginScreen;

@@ -1,6 +1,6 @@
-import { CardVersion, Img, Profile } from './styled';
-import { ResultType } from '@/types/components/search';
-import { TextComponent } from '@/shared/components/text';
+import { CardVersion, Img, Profile } from "./styled";
+import { ResultType } from "@/types/components/search";
+import { TextSemiBold } from "@/shared/style/font";
 
 type Props = {
   data?: ResultType;
@@ -11,20 +11,11 @@ export const CardVersionHeroComponent = ({ data, secondary }: Props) => (
   <CardVersion secondary={secondary}>
     <Img>
       <Profile
-        style={{
-          
-        }}
+        style={{}}
         source={`${data?.thumbnail?.path}/portrait_fantastic.${data?.thumbnail?.extension}`}
         transition={1000}
       />
     </Img>
-    <TextComponent
-      fontSize={16}
-      TextColor="white"
-      fontFamily="Poppins_600SemiBold"
-      maxWidth={250}
-    >
-      {data?.name}
-    </TextComponent>
+    <TextSemiBold>{data?.name}</TextSemiBold>
   </CardVersion>
 );

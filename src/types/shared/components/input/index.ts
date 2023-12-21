@@ -1,6 +1,5 @@
 import { ReactNode } from "react";
 import { TextInputProps } from "react-native";
-import { TextComponentsProps } from "../text";
 
 export type MarginOrPadding = {
   top?: number;
@@ -10,18 +9,19 @@ export type MarginOrPadding = {
 };
 
 export type InputComponentProps = {
-  text?: TextComponentsProps;
   fontSize?: number;
   colorFont?: string;
   bgColor?: string;
   border?: string;
   bRadius?: string;
   height?: string;
+  width?: number;
   label?: string;
   margin?: MarginOrPadding;
   padding?: MarginOrPadding;
   icon?: ReactNode;
   errorLabel?: string;
+  inputRef?: any
 } & TextInputProps;
 
 export type InputContainerComponentProps = {

@@ -14,7 +14,7 @@ export const ProfileComponent = ({ labels = "", loader }: Props) => {
       <ProfileSubtitle500 accessibilityLabel={`Subtítulo: ${subtitle}`}>
         {subtitle}
       </ProfileSubtitle500>
-      <ProfileTitle accessibilityLabel={`Título: ${title}`}>
+      <ProfileTitle margin={[0,0,48,0]} accessibilityLabel={`Título: ${title}`}>
         {title}
       </ProfileTitle>
     </>

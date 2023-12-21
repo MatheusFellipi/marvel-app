@@ -40,6 +40,19 @@ export const ContainerInput = styled.View<Props>`
   `};
 `;
 
+export const TextError = styled.Text`
+  font-family: "Poppins_400Regular";
+  font-size: 10px;
+  color: ${(props) => props.theme.colors.red};
+`;
+
+export const TextLabels = styled.Text`
+  font-family: "Poppins_400Regular";
+  font-size: 10px;
+  color: ${(props) => props.theme.colors.red};
+`;
+
+
 export const Input = styled.TextInput.attrs<Props>(({ theme, input }) => ({
   placeholderTextColor: input?.colorFont ?? theme.colors.dark,
   fontFamily: "Poppins_500Medium",
@@ -52,5 +65,5 @@ export const Input = styled.TextInput.attrs<Props>(({ theme, input }) => ({
     width: 100%;
     border-radius: ${input?.bRadius ?? "16px"};
     width: 100%;
-  `}
+  `};
 `;

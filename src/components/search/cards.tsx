@@ -1,10 +1,13 @@
 import { CardSearch } from "./styles";
-import { View, TouchableOpacity, AccessibilityInfo } from "react-native";
-import { TextComponent } from "@/shared/components/text";
+import { View, AccessibilityInfo } from "react-native";
 import { useTheme } from "styled-components";
 import { Image } from "expo-image";
 import { CardSearchProps } from "@/types/components/search";
 import { Icons } from "@assets/index";
+import {
+  TextDescription,
+  TextDescriptionPoppinsLight,
+} from "@/shared/style/font";
 
 export const CardSearchComponent = ({
   item,
@@ -34,7 +37,7 @@ export const CardSearchComponent = ({
   };
 
   const handlePress = () => handleNavigation(item.id);
-  
+
   const handleAccessibility = () => {
     AccessibilityInfo.announceForAccessibility(
       `Cartão para ${item.name ?? item.title}. Toque duplo para ver detalhes.`
@@ -64,24 +67,10 @@ export const CardSearchComponent = ({
         />
       </View>
       <View>
-        <TextComponent
-          fontSize={20}
-          TextColor={theme.colors.white}
-          fontFamily="Poppins_500Medium"
-        >
-          {title()}
-        </TextComponent>
-        <TextComponent
-          fontSize={13}
-          TextColor={theme.colors.white}
-          fontFamily="Poppins_300Light"
-          maxWidth={220}
-          style={{
-            textAlign: "justify",
-          }}
-        >
+        <TextDescription size={20}>{title()}</TextDescription>
+        <TextDescriptionPoppinsLight>
           {description()}
-        </TextComponent>
+        </TextDescriptionPoppinsLight>
       </View>
       <Icons.Nav.Arrow />
     </CardSearch>

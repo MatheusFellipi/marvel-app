@@ -1,4 +1,4 @@
-import { TextComponent } from "@/shared/components/text";
+import { TextBlack, TextDescription } from "@/shared/style/font";
 import { CharacteristicsContentProps } from "@/types/shared/components/characteristics";
 import { View } from "react-native";
 
@@ -7,21 +7,11 @@ export const CharacteristicContentComponent = ({
   count,
 }: CharacteristicsContentProps) => (
   <View>
-    <TextComponent
-      TextColor="white"
-      fontFamily="Poppins_900Black"
-      fontSize={20}
-      style={{ textAlign: "center" }}
-    >
+    <TextBlack size={20} style={{ textAlign: "center" }}>
       {count}
-    </TextComponent>
-    <TextComponent
-      TextColor="white"
-      fontFamily="Poppins_500Medium"
-      fontSize={12}
-      style={{ textAlign: "center" }}
-    >
+    </TextBlack>
+    <TextDescription size={12} style={{ textAlign: "center" }}>
       {title}
-    </TextComponent>
+    </TextDescription>
   </View>
 );

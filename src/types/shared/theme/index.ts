@@ -5,5 +5,6 @@ export type TypeColors = {
   red: string;
   dark: string;
   grey: string;
+  greyLight: string;
   silver: string;
 };

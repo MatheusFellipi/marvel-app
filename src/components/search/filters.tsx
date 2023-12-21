@@ -1,9 +1,9 @@
 import { FlatList } from "react-native";
 import { FilterBtn } from "./styles";
-import { TextComponent } from "@/shared/components/text";
 import { useTheme } from "styled-components/native";
 import { useState } from "react";
 import { TypeFilter } from "@/types/components/search";
+import { TextDescription } from "@/shared/style/font";
 
 const Filter = [
   {
@@ -59,13 +59,13 @@ export const FilterComponent = ({ onCallBack }: Props) => {
           accessibilityState={{ selected: item.selected }}
           onPress={() => handleChangeFilter(item)}
         >
-          <TextComponent
-            fontSize={12}
-            TextColor={item.selected ? theme.colors.white : theme.colors.dark}
+          <TextDescription
+            size={12}
+            color={item.selected ? theme.colors.white : theme.colors.dark}
             accessibilityRole="text"
           >
             {item.name}
-          </TextComponent>
+          </TextDescription>
         </FilterBtn>
       )}
     />

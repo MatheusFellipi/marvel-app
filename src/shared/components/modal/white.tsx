@@ -1,20 +1,19 @@
 import { Icons } from "@assets/index";
 import { ClosedWhite, White } from "./styled";
-import { TextComponent } from "../text";
+import { ProfileSubtitle500 } from "@/shared/style/font";
 
 export function HeaderWhite({ onClosed, title }: Readonly<any>) {
   return (
     <White>
-      <TextComponent
-        fontSize={18}
-        fontFamily="Poppins_500Medium"
+      <ProfileSubtitle500
+        size={18}
         style={{
           flex: 1,
           textAlign: "center",
         }}
       >
         {title}
-      </TextComponent>
+      </ProfileSubtitle500>
       <ClosedWhite onPress={onClosed}>
         <Icons.Closed />
       </ClosedWhite>

@@ -1,10 +1,15 @@
-import { Container, ContainerInput, Input } from "./styled";
-import { RFValue } from "react-native-responsive-fontsize";
-import { useState } from "react";
-import { View } from "react-native";
-import { InputComponentProps } from "@/types/shared/components/input";
-import { LabelInputComponent, LabelInputErrorComponent } from "./labels";
-import { IsIconShowPassComponents } from "./icons";
+import {
+  Container,
+  ContainerInput,
+  Input,
+  TextError,
+  TextLabels
+  } from './styled';
+import { InputComponentProps } from '@/types/shared/components/input';
+import { IsIconShowPassComponents } from './icons';
+import { RFValue } from 'react-native-responsive-fontsize';
+import { useState } from 'react';
+import { View } from 'react-native';
 
 export function InputComponent({
   text,
@@ -37,7 +42,7 @@ export function InputComponent({
 
   return (
     <Container input={input}>
-      {label && <LabelInputComponent />}
+      {label && <TextLabels>{label}</TextLabels>}
       <ContainerInput input={input}>
         {icon && <View style={{ paddingLeft: 20 }}>{icon}</View>}
         <Input input={input} secureTextEntry={showPassword} {...props} />
@@ -48,7 +53,7 @@ export function InputComponent({
           />
         )}
       </ContainerInput>
-      {errorLabel.length > 0 && <LabelInputErrorComponent label={errorLabel} />}
+      {errorLabel.length > 0 && <TextError>{errorLabel}</TextError>}
     </Container>
   );
 }

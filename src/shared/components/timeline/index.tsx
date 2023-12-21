@@ -13,7 +13,7 @@ type Props = {
 };
 
 const Text = (title: string) => (
-  <TextDescription color={"#BCC1CD"}>{title}</TextDescription>
+  <TextDescription color="greyLight">{title}</TextDescription>
 );
 
 export const TimelineComponent = ({ data, loader }: Props) => {

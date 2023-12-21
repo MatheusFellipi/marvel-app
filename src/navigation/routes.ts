@@ -3,6 +3,18 @@ export const appStackRoutes = [
     name: "index",
   },
   {
+    name: "login/index",
+  },
+  {
+    name: "login/forgot",
+  },
+  {
+    name: "login/codeForgot",
+  },
+  {
+    name: "login/changePassword",
+  },
+  {
     name: "home/index",
   },
   {

@@ -6,7 +6,7 @@ import { ThemeProvider } from "styled-components/native";
 import { useEffect } from "react";
 import { useFonts } from "@/shared/hooks/fonts";
 import { Navigation } from "@/navigation";
-import { View } from "react-native";
+import { Keyboard, TouchableWithoutFeedback, View } from "react-native";
 export { ErrorBoundary } from "expo-router";
 
 export const unstable_settings = {
@@ -34,7 +34,7 @@ export default function RootLayout() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Navigation />
+        <Navigation />
     </ThemeProvider>
   );
 }
