@@ -3,9 +3,6 @@ export const appStackRoutes = [
     name: "index",
   },
   {
-    name: "login/index",
-  },
-  {
     name: "login/forgot",
   },
   {
@@ -34,5 +31,5 @@ export const appStackRoutes = [
   },
   {
     name: "creator/[id]",
-  }
+  },
 ];

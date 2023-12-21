@@ -1,18 +1,13 @@
 import { Icons } from "@assets/index";
-import { useEffect, useRef, useState } from "react";
-import {
-  Alert,
-  StyleSheet,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from "react-native";
-import { SubtitleText, TextDescription } from "@/shared/style/font";
+import { useState } from "react";
+import { Alert, StyleSheet, TouchableOpacity, View } from "react-native";
+import { SubtitleText } from "@/shared/style/font";
 import { useRouter } from "expo-router";
-import { Forgot, Form } from "../styles";
+import { Form } from "../styles";
 import { BackGroundComponents } from "../components/background";
 import { SubmitBtnGradient } from "../components/submitBtn";
 import { InputLoginComponent } from "../components/input";
+import { passwordCheck } from "../validade";
 
 export const ChangePasswordComponents = () => {
   const router = useRouter();
@@ -28,17 +23,28 @@ export const ChangePasswordComponents = () => {
   });
 
   const handleLogin = async () => {
-    if (values.password !== values.rePassword)
+    const { erros, isErrors } = await passwordCheck(values);
+    if (isErrors) {
+      setErrors(erros);
+      return;
+    } else {
+      setErrors({ password: "", rePassword: "" });
+    }
+
+    if (values.password !== values.rePassword) {
       Alert.alert(
         "Aviso",
         "As senhas não são iguais. Por favor, verifique e tente novamente."
       );
-
+      return;
+    }
+    setLoader(true);
     try {
-      router.push({ pathname: "login" });
-    } catch (error) {}
-
-    router.push({ pathname: "login/index" });
+      setLoader(false);
+      router.push({ pathname: "/" });
+    } catch (error) {
+      setLoader(false);
+    }
   };
 
   return (

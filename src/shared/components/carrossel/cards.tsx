@@ -1,6 +1,7 @@
-import { CardsCarrossel, styles, TextTitleCard } from './styles';
-import { Image } from 'expo-image';
-import { PropsCardsComponents } from '@/types/shared/components/carrossel';
+import { CardsCarrossel, styles, TextTitleCard } from "./styles";
+import { PropsCardsComponents } from "@/types/shared/components/carrossel";
+import { Image } from "expo-image";
+import { LinearGradient } from "expo-linear-gradient";
 
 export const CardsComponent = ({
   data,
@@ -17,14 +18,17 @@ export const CardsComponent = ({
   };
 
   return (
-    <CardsCarrossel
-      onPress={() => handleRoute?.(data.id)}
-      accessibilityLabel={`Card para ${title()}. Toque para ver detalhes.`}
-    >
+    <CardsCarrossel onPress={() => handleRoute(data.id)}>
+      <LinearGradient
+        style={{
+          width: 140,
+          height: 230,
+          borderRadius: 16,
+        }}
+        colors={["transparent", "#000000cc"]}
+      />
       <Image style={styles.image} source={url} transition={1000} accessible />
-      <TextTitleCard
-        accessibilityLabel={`Título do card: ${title()}`}
-      >
+      <TextTitleCard accessibilityLabel={`Título do card: ${title()}`}>
         {title()}
       </TextTitleCard>
     </CardsCarrossel>

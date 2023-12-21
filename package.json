@@ -21,6 +21,7 @@
     "expo-linear-gradient": "^12.5.0",
     "expo-linking": "~5.0.2",
     "expo-router": "^2.0.0",
+    "expo-splash-screen": "~0.20.5",
     "expo-status-bar": "~1.6.0",
     "jwt-decode": "^4.0.0",
     "jwt-encode": "^1.0.1",

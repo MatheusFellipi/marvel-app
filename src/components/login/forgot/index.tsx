@@ -10,7 +10,6 @@ import { InputLoginComponent } from "../components/input";
 import { SubmitBtnGradient } from "../components/submitBtn";
 import { BackGroundComponents } from "../components/background";
 
-
 export const ForgotComponents = () => {
   const router = useRouter();
   const [values, setValues] = useState("matheus@hotmail.com.br");
@@ -18,17 +17,17 @@ export const ForgotComponents = () => {
   const [errors, setErrors] = useState("");
 
   const handleLogin = async () => {
-    const { erros, isErrors } = await forgotCheck(values);
+    const { erros, isErrors } = await forgotCheck({ username: values });
     if (isErrors) {
       setErrors(erros);
       return;
     } else setErrors("");
-
+    setLoader(true);
     try {
-      await controllerAuth.forgot({ username: values });
-      Alert.alert("aviso", "O código foi enviado");
+      await controllerAuth.Forgot({ username: values });
+      Alert.alert("aviso", "O código foi enviado para seu email");
       setLoader(false);
-      router.push({ pathname: "codeForgot" });
+      router.push({ pathname: "login/codeForgot" });
     } catch (error: any) {
       setLoader(false);
       Alert.alert("aviso", error);

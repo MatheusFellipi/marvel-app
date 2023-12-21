@@ -1,5 +1,5 @@
 import * as yup from "yup";
-import { TypeAuth } from "@/types/components/auth";
+import { TypeAuth, TypeForgot, TypePassword } from "@/types/components/auth";
 
 let loginSchema = yup.object().shape({
   username: yup
@@ -42,15 +42,43 @@ let forgot = yup.object().shape({
 });
 
 export const forgotCheck = async (
-  values: string
+  values: TypeForgot
 ): Promise<{ isErrors: boolean; erros: string }> => {
   let erros = "";
   try {
-    await loginSchema.validate(values, { abortEarly: false });
+    await forgot.validate(values, { abortEarly: false });
     return { isErrors: false, erros };
   } catch (error: any) {
     if (error.name === "ValidationError") {
       erros = error.inner.message;
+    }
+    return { isErrors: true, erros };
+  }
+};
+
+let password = yup.object().shape({
+  password: yup.string().required("A senha é obrigatória"),
+  rePassword: yup.string().required("A senha é obrigatória"),
+});
+
+export const passwordCheck = async (
+  values: {}
+): Promise<{ isErrors: boolean; erros: TypePassword }> => {
+  let erros = { password: "", rePassword: "" } as TypePassword;
+  try {
+    await password.validate(values, { abortEarly: false });
+    return { isErrors: false, erros };
+  } catch (error: any) {
+    if (error.name === "ValidationError") {
+      const validationErrors: TypePassword = {} as TypePassword;
+      error.inner.forEach((err: any) => {
+        validationErrors[err.path as keyof TypePassword] = err.message;
+      });
+      erros = {
+        ...validationErrors,
+      };
+    } else {
+      console.error("Ocorreu um erro ao validar o formulário", error);
     }
     return { isErrors: true, erros };
   }

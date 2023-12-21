@@ -10,6 +10,19 @@ export type TypeUser = {
     id: number;
   };
 };
+
 export type TypeForgot = {
   username: string;
+};
+
+export type TypePassword = {
+  password: string;
+  rePassword: string;
+};
+
+
+export type TypeCodeForgot = {
+  username: string;
+  id: number;
+  code: string;
 };

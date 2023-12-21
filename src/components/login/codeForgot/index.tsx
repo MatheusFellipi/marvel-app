@@ -1,11 +1,19 @@
 import { Icons } from "@assets/index";
 import { useEffect, useRef, useState } from "react";
-import { StyleSheet, TextInput, TouchableOpacity, View } from "react-native";
+import {
+  Alert,
+  StyleSheet,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { SubtitleText, TextDescription } from "@/shared/style/font";
 import { useRouter } from "expo-router";
 import { Forgot, Form } from "../styles";
 import { BackGroundComponents } from "../components/background";
 import { SubmitBtnGradient } from "../components/submitBtn";
+import { controllerAuth } from "@/services/auth";
+import { TypeCodeForgot } from "@/types/components/auth";
 
 type InputRef = React.RefObject<TextInput>;
 
@@ -19,17 +27,30 @@ export const CodeForgotComponents = () => {
     .fill(null)
     .map(() => useRef<TextInput>(null));
 
-  const handleInputChange = (text: string, index: number) => {
-    if (text.length === 1 && index < inputRefs.length - 1) {
-      inputRefs[index + 1].current?.focus();
-    }
-    
-    const updatedValue = inputRefs.map((ref) => ref.current?.value || "").join("");
-    setValue(updatedValue);
-  };
+    const handleInputChange = (text: string, index: number) => {
+      if (text.length === 1 && index < inputRefs.length - 1) {
+        inputRefs[index + 1].current?.focus();
+      } else if (text.length === 0 && index > 0) {
+        inputRefs[index - 1].current?.focus();
+      }
+    };
 
   const handleLogin = async () => {
-    router.push({pathname:"login/changePassword"})
+    setLoader(true);
+    const data = {
+      code: value,
+      id: 1,
+      username: "matheus@hotmail.com.br",
+    } as TypeCodeForgot;
+    try {
+      const res = await controllerAuth.CheckCode(data);
+      Alert.alert("aviso", res);
+      router.push({ pathname: "login/changePassword" });
+      setLoader(false);
+    } catch (error: any) {
+      Alert.alert("aviso", error);
+      setLoader(false);
+    }
   };
 
   useEffect(() => {
@@ -66,10 +87,22 @@ export const CodeForgotComponents = () => {
             <TextInput
               key={index}
               ref={inputRef}
-              style={styles.input}
+              style={{
+                ...styles.input,
+                color: "#A4A4A4",
+                fontFamily: "Poppins_500Medium",
+                fontSize: 14.33,
+              }}
               maxLength={1}
               keyboardType="numeric"
-              onChangeText={(text) => handleInputChange(text, index)}
+              onChangeText={(text) => {
+                const updatedValue = [...value];
+                updatedValue[index] = text;
+                setValue(updatedValue.join(""));
+
+                handleInputChange(text, index);
+              }}
+              value={value[index]}
             />
           ))}
         </View>

@@ -4,9 +4,7 @@ import { StyleSheet } from "react-native";
 export const CardsCarrossel = styled.TouchableOpacity`
   position: relative;
   width: 140px;
-  height: 230px;
   margin: 24px 16px 0 16px;
-  border-radius: 16px;
 `;
 
 export const TextTitleCard = styled.Text`
@@ -20,9 +18,12 @@ export const TextTitleCard = styled.Text`
 
 export const styles = StyleSheet.create({
   image: {
+    position: "absolute",
     flex: 1,
-    width: "100%",
+    width: 140,
+    height: 230,
     borderRadius: 16,
+    zIndex: -2,
   },
 });
 
