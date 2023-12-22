@@ -10,11 +10,6 @@
 > O prazo para finalização do teste será fornecido pelo setor de Recursos Humanos.<br> >**_Não deixe de entregar sua aplicação_**, mesmo que não esteja completa ou perfeita;<br>
 > A entrega do código deve ser feita no GitHub e, após a conclusão, notifique a equipe através dos e-mails tecnologia@pontua.com.br e gente@pontua.com.br.<br>
 
----
-
-> Link para layout no Figma: [layout]('https://www.figma.com/file/WgcfxyLOze9TZDUzFJ26Dx/Teste-de-Desenvolvimento-Pontua-Mobile?type=design&node-id=218%3A4648&mode=design&t=UOMzcvXkefwe0ffA-1')
-
----
 ## sobre
 
 <br>
