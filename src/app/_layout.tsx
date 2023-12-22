@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import { useFonts } from "@/shared/hooks/fonts";
 import { Navigation } from "@/navigation";
 import { Keyboard, TouchableWithoutFeedback, View } from "react-native";
+import { controllerUser } from "@/services/users";
 export { ErrorBoundary } from "expo-router";
 
 export const unstable_settings = {
@@ -18,6 +19,15 @@ SplashScreen.preventAutoHideAsync();
 export default function RootLayout() {
   const { fontsLoaded, fontError } = useFonts();
 
+  const AddUser = async () => {
+    await controllerUser.createUser({
+      fullName: "Matheus",
+      email: "matheus@hotmail.com.br",
+      password: "test",
+      confirmPassword: "test",
+    });
+  };
+
   useEffect(() => {
     if (fontError) throw fontError;
   }, [fontError]);
@@ -26,6 +36,7 @@ export default function RootLayout() {
     if (fontsLoaded) {
       SplashScreen.hideAsync();
     }
+    AddUser();
   }, [fontsLoaded]);
 
   if (!fontsLoaded) {
@@ -34,7 +45,7 @@ export default function RootLayout() {
 
   return (
     <ThemeProvider theme={theme}>
-        <Navigation />
+      <Navigation />
     </ThemeProvider>
   );
 }
