@@ -6,7 +6,6 @@ import { ThemeProvider } from "styled-components/native";
 import { useEffect } from "react";
 import { useFonts } from "@/shared/hooks/fonts";
 import { Navigation } from "@/navigation";
-import { Keyboard, TouchableWithoutFeedback, View } from "react-native";
 import { controllerUser } from "@/services/users";
 export { ErrorBoundary } from "expo-router";
 
