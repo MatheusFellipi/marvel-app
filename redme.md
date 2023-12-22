@@ -225,6 +225,13 @@ ou
 yarn dev
 ```
 
+## Env
+
+´
+EXPO_PUBLIC_API_KEY= apikey marvel
+EXPO_PUBLIC_PRIVATE_API_KEY= PrivateApiKey marvel
+´
+
 ## login
 
 - Usuario: `matheus@hotmail.com.br`
@@ -232,12 +239,12 @@ yarn dev
 
 ## cadastro
 
-- os dados esta sendo salvo em um array local na aplicação
+- os dados esta sendo salvo em um FIREBASE
 
 ## Teste de esquece a senha
 
-- code: 123456
-- todos os dados estão locais em um array.
+- code: 123456 sempre vai ser
+
 
 ## Arquitetura de pasta
 
