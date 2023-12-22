@@ -1,19 +1,12 @@
-import { Icons } from "@assets/index";
-import { useEffect, useRef, useState } from "react";
-import {
-  Alert,
-  StyleSheet,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from "react-native";
-import { SubtitleText, TextDescription } from "@/shared/style/font";
-import { useRouter } from "expo-router";
-import { Forgot, Form } from "../styles";
 import { BackGroundComponents } from "../components/background";
+import { controllerUser } from "@/services/users";
+import { Forgot } from "../styles";
 import { SubmitBtnGradient } from "../components/submitBtn";
-import { controllerAuth } from "@/services/auth";
+import { SubtitleText, TextDescription } from "@/shared/style/font";
 import { TypeCodeForgot } from "@/types/components/auth";
+import { useEffect, useRef, useState } from "react";
+import { useRouter } from "expo-router";
+import { Alert, StyleSheet, TextInput, View } from "react-native";
 
 type InputRef = React.RefObject<TextInput>;
 
@@ -37,13 +30,14 @@ export const CodeForgotComponents = () => {
 
   const handleLogin = async () => {
     setLoader(true);
+
     const data = {
       code: value,
-      id: 1,
-      username: "matheus@hotmail.com.br",
+      user_id: "matheus@hotmail.com.br",
     } as TypeCodeForgot;
+
     try {
-      const res = await controllerAuth.CheckCode(data);
+      const res = await controllerUser.CheckCode(data);
       Alert.alert("aviso", res);
       router.push({ pathname: "login/changePassword" });
       setLoader(false);

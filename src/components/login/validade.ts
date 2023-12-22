@@ -34,7 +34,7 @@ export const checkLogin = async (
 };
 
 let forgot = yup.object().shape({
-  username: yup
+  email: yup
     .string()
     .email("Email inválido")
     .required("O email é obrigatório")

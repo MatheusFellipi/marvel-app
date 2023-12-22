@@ -18,7 +18,6 @@ export const Form = styled.View`
 `;
 
 export const Forgot = styled.TouchableOpacity`
-  width: 100%;
   align-items: flex-end;
   margin-top: 10px;
   margin-bottom: 24px;

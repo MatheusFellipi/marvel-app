@@ -1,13 +1,18 @@
-import { Alert, Button, View } from "react-native";
+import { Alert, View } from "react-native";
 import { createCheck } from "./validade";
-import { InputComponent } from "@/shared/components/input";
 import { ProfileTitle, TextSemiBold } from "@/shared/style/font";
 import { UserCreateBackgroundComponents } from "./background";
 import { useState } from "react";
 import { InputCreateComponent } from "./input";
 import { SubmitBtnGradient } from "../login/components/submitBtn";
+import { controllerUser } from "@/services/users";
+import { useRouter } from "expo-router";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import { Icons } from "@assets/index";
 
 export const UserCreateComponent = () => {
+  const router = useRouter();
+
   const [values, setValues] = useState({
     fullName: "",
     email: "",
@@ -30,20 +35,28 @@ export const UserCreateComponent = () => {
     setLoader(true);
 
     try {
+      await controllerUser.createUser(values);
       Alert.alert("Cadastro realizado com sucesso!");
+      router.push({ pathname: "/" });
     } catch (error) {
+      Alert.alert(error as string);
     } finally {
-      setLoader(true);
+      setLoader(false);
     }
   };
 
   return (
     <UserCreateBackgroundComponents>
-      <View>
-        <ProfileTitle>Bem-vindo!</ProfileTitle>
-        <TextSemiBold color="greyLight">
-          Vamos lá! Cadastre-se e aproveite o melhor do universo Marvel.
-        </TextSemiBold>
+      <View style={{ marginTop: 20 }}>
+        <TouchableOpacity onPress={() => router.back()}>
+          <Icons.Nav.Back />
+        </TouchableOpacity>
+        <View style={{ justifyContent: "center",alignItems:"center" }}>
+          <ProfileTitle>Bem-vindo!</ProfileTitle>
+          <TextSemiBold color="greyLight">
+            Vamos lá! Cadastre-se e aproveite o melhor do universo Marvel.
+          </TextSemiBold>
+        </View>
       </View>
 
       <InputCreateComponent

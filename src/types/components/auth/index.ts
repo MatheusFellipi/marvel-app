@@ -11,24 +11,23 @@ export type TypeUser = {
 };
 
 export type TypeForgot = {
-  username: string;
+  email: string;
 };
 
 export type TypePassword = {
+  email: string;
   password: string;
   rePassword: string;
 };
 
-
 export type TypeCodeForgot = {
-  username: string;
+  user_id: string;
   code: string;
 };
 
-
 export type TypeUserCreate = {
-  fullName:string;
-  email:string;
-  password:string;
-  confirmPassword:string;
+  fullName: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
 };

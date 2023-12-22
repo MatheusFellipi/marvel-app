@@ -18,6 +18,7 @@ export const UserCreateBackgroundComponents = ({
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <View
         style={{
+          position: "relative",
           height: height,
           paddingTop: 30,
           backgroundColor: "#240024",

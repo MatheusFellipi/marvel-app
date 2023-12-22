@@ -4,11 +4,6 @@ import md5 from "md5";
 
 const secret = "f548af1695de2a8b6865d25c8d328220";
 
-type TypeRepository = {
-  fullName: string;
-  username: string;
-  password: string;
-};
 
 const __repository = [
   {

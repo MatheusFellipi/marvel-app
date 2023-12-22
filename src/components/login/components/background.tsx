@@ -38,7 +38,6 @@ export const BackGroundComponents = ({ children, back }: Props) => {
             <Icons.Nav.Back />
           </TouchableOpacity>
         )}
-        
         <ImageBackground
           style={{
             height: 150,

@@ -1,14 +1,14 @@
-import { Icons } from "@assets/index";
-import { useState } from "react";
-import { controllerAuth } from "@/services/auth";
-import { Alert, TouchableOpacity, View } from "react-native";
-import { SubtitleText, TextDescription } from "@/shared/style/font";
-import { useRouter } from "expo-router";
-import { forgotCheck } from "../validade";
-import { Forgot, Form } from "../styles";
-import { InputLoginComponent } from "../components/input";
-import { SubmitBtnGradient } from "../components/submitBtn";
-import { BackGroundComponents } from "../components/background";
+import { Alert, View } from 'react-native';
+import { BackGroundComponents } from '../components/background';
+import { controllerUser } from '@/services/users';
+import { Forgot } from '../styles';
+import { forgotCheck } from '../validade';
+import { Icons } from '@assets/index';
+import { InputLoginComponent } from '../components/input';
+import { SubmitBtnGradient } from '../components/submitBtn';
+import { SubtitleText, TextDescription } from '@/shared/style/font';
+import { useRouter } from 'expo-router';
+import { useState } from 'react';
 
 export const ForgotComponents = () => {
   const router = useRouter();
@@ -17,14 +17,14 @@ export const ForgotComponents = () => {
   const [errors, setErrors] = useState("");
 
   const handleLogin = async () => {
-    const { erros, isErrors } = await forgotCheck({ username: values });
+    const { erros, isErrors } = await forgotCheck({ email: values });
     if (isErrors) {
       setErrors(erros);
       return;
     } else setErrors("");
     setLoader(true);
     try {
-      await controllerAuth.Forgot({ username: values });
+      await controllerUser.Forgot({ email: values });
       Alert.alert("aviso", "O código foi enviado para seu email");
       setLoader(false);
       router.push({ pathname: "login/codeForgot" });

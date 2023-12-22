@@ -2,11 +2,9 @@ import {
   TypeAuth,
   TypeCodeForgot,
   TypeForgot,
-  TypePassword,
   TypeUser,
-  TypeUserCreate,
 } from "@/types/components/auth";
-import { mockCode, mockCreate, mockForgot, mockLogin } from "./mock";
+import { mockCode, mockForgot, mockLogin } from "./mock";
 
 export const controllerAuth = {
   Login: async (login: TypeAuth): Promise<TypeUser> => {
@@ -19,11 +17,6 @@ export const controllerAuth = {
   },
   CheckCode: async (login: TypeCodeForgot): Promise<string> => {
     const data = await mockCode(login);
-    return data;
-  },
-  changePassword: async (login: TypePassword) => {},
-  createUser: async (login: TypeUserCreate) => {
-    const data = await mockCreate(login);
     return data;
   },
 };
