@@ -227,10 +227,10 @@ yarn dev
 
 ## Env
 
-´
+```
 EXPO_PUBLIC_API_KEY= apikey marvel
 EXPO_PUBLIC_PRIVATE_API_KEY= PrivateApiKey marvel
-´
+```
 
 ## login
 
@@ -244,7 +244,6 @@ EXPO_PUBLIC_PRIVATE_API_KEY= PrivateApiKey marvel
 ## Teste de esquece a senha
 
 - code: 123456 sempre vai ser
-
 
 ## Arquitetura de pasta
 
