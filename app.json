@@ -1,14 +1,14 @@
 {
   "expo": {
-    "name": "marvel-app",
-    "slug": "marvel-app",
-    "scheme": "myapp",
+    "name": "unintegra",
+    "slug": "unintegra",
+    "scheme": "unintegraapp",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "experiments": {
-      "tsconfigPaths": true
+      "tsconfigPaths": false
     },
     "splash": {
       "image": "./assets/splash.png",

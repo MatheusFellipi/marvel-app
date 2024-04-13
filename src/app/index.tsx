@@ -1,7 +1,15 @@
-import { LoginComponents } from "@/components/login";
+import { Text, View } from "react-native";
 
 const LoginScreen = () => {
-  return <LoginComponents />;
+  return (
+    <View
+      style={{
+        justifyContent: "center",
+      }}
+    >
+      <Text>Test</Text>
+    </View>
+  );
 };
 
 export default LoginScreen;
